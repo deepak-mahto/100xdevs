@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+:root {
+  --primary-color: #fffdf9;
+  --button-color: #ff4f00;
+  --text-primary-color: #000000;
+  --text-secondary-color: #201515;
+  --text-tertiary-color: #413735;
+}
+
+/* Header */
+.navigation {
+  width: 100vw;
+  height: 55px;
+  padding: 0 40px 0 40px;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  border-bottom: 1px solid #e0dddd;
+}
+
+.logo {
+  height: 55px;
+  width: 105px;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo .brand {
+  font-size: 31px;
+  font-weight: bolder;
+  color: var(--text-primary-color);
+}
+
+.logo .brand span {
+  color: var(--button-color);
+}
+
+.links-container {
+  height: 55px;
+  width: 1229.88px;
+  margin: 0 0 0 25px;
+  min-height: auto;
+  min-width: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.links-container ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.links-container ul li {
+  list-style-type: none;
+  color: var(--text-tertiary-color);
+  padding: 16px;
+  cursor: pointer;
+}
+
+.contact-links {
+  height: 55px;
+  width: 463.125px;
+  min-height: auto;
+  min-width: auto;
+}
+
+.contact-links ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-links ul li {
+  list-style-type: none;
+  color: var(--text-tertiary-color);
+  padding: 16px;
+  height: 55px;
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.contact-links ul li a {
+  height: 32px;
+  width: 100px;
+  border: 1px solid #ffffff;
+  background-color: var(--button-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 40px;
+  cursor: pointer;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  font-weight: 600;
+}
+
+.contact-links ul li:nth-child(4) {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo img {
+  width: 28px;
+  height: 105px;
+}
+
+/* Main */
+
+/* Landing-page-section */
+.landing-page-section {
+  /* height: 1047.94px; */
+  width: 100vw;
+  padding: 96px 20px 48px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.important-info {
+  /* margin-top: 8rem; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.important-info .headline {
+  height: 126px;
+  width: 848px;
+  min-height: auto;
+  max-width: 848px;
+  min-width: auto;
+  font-family: Degular, Helvetica, arial, sans-serif;
+  font-size: 70px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text-primary-color);
+}
+
+.important-info .sub-headline {
+  height: 63.8125px;
+  width: 960px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-secondary-color);
+  padding: 10px;
+}
+
+.important-info .points {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.important-info .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.important-info .buttons a:nth-child(1) {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 23.4px;
+  background-color: var(--button-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  height: 50px;
+  width: 272px;
+  border: 1px solid var(--button-color);
+  padding: 12px 20px 8px 20px;
+  min-height: 44px;
+  max-width: 272px;
+  border-radius: 25px;
+}
+
+.important-info .buttons a:nth-child(2) {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 23.4px;
+  height: 50px;
+  width: 272px;
+  border: 1px solid var(--text-primary-color);
+  color: var(--text-primary-color);
+  padding: 12px 20px 8px 20px;
+  min-height: 44px;
+  max-width: 272px;
+  border-radius: 25px;
+}
+
+.important-info .buttons a:nth-child(2) span img {
+  padding-top: 1px;
+  float: left;
+}
+
+.video video {
+  height: 658.125px;
+  width: 1170px;
+  max-height: 100%;
+  max-width: 100%;
+  min-width: auto;
+  min-height: auto;
+}
+
+/* Usage */
+.usage p {
+  text-align: center;
+}
