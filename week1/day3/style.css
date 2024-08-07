@@ -239,3 +239,33 @@ body {
 .usage p {
   text-align: center;
 }
+
+/* footer */
+.zapier-image-container {
+  height: 440.312px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zapier-image-container img {
+  height: 324.312px;
+  width: 1200px;
+  max-width: 100%;
+}
+
+.footer-bottom {
+  height: 40px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px;
+}
+
+.footer-bottom .zapier-logo-container img {
+  height: 22px;
+  width: 81px;
+}
