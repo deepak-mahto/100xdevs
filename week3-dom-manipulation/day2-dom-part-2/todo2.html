@@ -1,0 +1,15 @@
+<body>
+  <input type="text" placeholder="Enter task" />
+  <button onclick="addTask()">Add task</button>
+
+  <script>
+    let todos = [];
+    function addTask() {
+      todos.push({
+        title: document.querySelector("input").value,
+      });
+      render();
+    }
+    function render() {}
+  </script>
+</body>
