@@ -11,18 +11,9 @@
       <input id="inp" type="text" placeholder="Enter task" />
       <button onclick="addTodo()">Add task</button>
     </div>
-    <div id="todos">
-      <div id="todo-1">
-        <h4>1. Take class</h4>
-        <button onclick="deleteTodo(1)">Delete</button>
-      </div>
-      <div id="todo-2">
-        <h4>2. Go out to eat</h4>
-        <button onclick="deleteTodo(2)">Delete</button>
-      </div>
-    </div>
+    <div id="todos"></div>
     <script>
-      let currentIndex = 3;
+      let currentIndex = 1;
 
       function addTodo() {
         const inputEle = document.getElementById("inp");
