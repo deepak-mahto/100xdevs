@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+  </head>
+  <body>
+    <h1>Todo List</h1>
+    <div>
+      <input id="inp" type="text" placeholder="Enter task" />
+      <button onclick="addTodo()">Add task</button>
+    </div>
+    <div id="todos">
+      <div id="todo-1">
+        <h4>1. Take class</h4>
+        <button onclick="deleteTodo(1)">Delete</button>
+      </div>
+      <div id="todo-2">
+        <h4>2. Go out to eat</h4>
+        <button onclick="deleteTodo(2)">Delete</button>
+      </div>
+    </div>
+    <script>
+      let currentIndex = 3;
+
+      function addTodo() {
+        const inputEle = document.getElementById("inp");
+        const todoText = inputEle.value.trim();
+
+        if (todoText === "") {
+          alert("Please enter a todo item.");
+          return;
+        }
+        const parentElement = document.getElementById("todos");
+
+        const newTodo = document.createElement("div");
+        newTodo.setAttribute("id", "todo-" + currentIndex);
+
+        const newHeading = document.createElement("h4");
+        newHeading.textContent = currentIndex + "." + todoText;
+        newTodo.appendChild(newHeading);
+
+        const newButton = document.createElement("button");
+        newButton.textContent = "Delete";
+        newButton.setAttribute("onclick", "deleteTodo(" + currentIndex + ")");
+        newTodo.appendChild(newButton);
+
+        parentElement.appendChild(newTodo);
+        currentIndex += 1;
+
+        inputEle.value = "";
+      }
+
+      function deleteTodo(index) {
+        const element = document.getElementById("todo-" + index);
+        if (element) {
+          element.parentNode.removeChild(element);
+        }
+      }
+    </script>
+  </body>
+</html>
