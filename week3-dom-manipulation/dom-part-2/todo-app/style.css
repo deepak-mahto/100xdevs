@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 100px;
+  gap: 0.5rem;
+}
+
+#main h1 {
+  margin: 0.5rem;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.checkbox-input,
+.edit-delete {
+  display: flex;
+  gap: 5px;
+}
+
+.input-box {
+  background-color: transparent;
+  border: 0px solid;
+}
+
+.input-box:focus {
+  outline: none;
+}
