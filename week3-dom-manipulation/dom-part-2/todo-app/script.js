@@ -64,15 +64,21 @@ function renderTodos(todos) {
     checkInpBoxContainer.classList.add("checkbox-input");
 
     const checkbox = document.createElement("input");
+    checkbox.classList.add("checkbox-style");
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("id", todo.checkId);
     checkbox.checked = todo.isCompleted;
 
     const inputBox = document.createElement("input");
-    inputBox.classList.add("input-box");
+    inputBox.classList.add("input-box", "input-style");
+    inputBox.setAttribute("size", "40");
     inputBox.setAttribute("type", "text");
     inputBox.setAttribute("id", todo.TodoTextId);
     inputBox.setAttribute("value", todo.title);
+
+    if (todo.isCompleted) {
+      inputBox.classList.add("task-completed");
+    }
 
     checkInpBoxContainer.appendChild(checkbox);
     checkInpBoxContainer.appendChild(inputBox);
@@ -81,10 +87,12 @@ function renderTodos(todos) {
     editDeleteContainer.classList.add("edit-delete");
 
     const editBtnContainer = document.createElement("button");
+    editBtnContainer.classList.add("edit-button");
     editBtnContainer.setAttribute("id", todo.editId);
     editBtnContainer.innerHTML = todo.isEditing ? "Save" : "Edit";
 
     const deleteBtnContainer = document.createElement("button");
+    deleteBtnContainer.classList.add("delete-button");
     deleteBtnContainer.setAttribute("id", todo.deleteId);
     deleteBtnContainer.innerHTML = "Delete";
 
@@ -108,13 +116,6 @@ function renderTodos(todos) {
     if (todo.isEditing) {
       const inputField = document.getElementById(todo.TodoTextId);
       inputField.focus();
-      inputField.classList.add(
-        "outline-none",
-        "ring",
-        "ring-blue-500",
-        "rounded-md",
-        "p-1"
-      );
     }
 
     document.getElementById(todo.checkId).addEventListener("click", () => {
@@ -122,7 +123,7 @@ function renderTodos(todos) {
     });
     if (todo.isCompleted) {
       const inputText = document.getElementById(todo.TodoTextId);
-      inputText.classList.add("line-through", "text-gray-500");
+      inputText.classList.add("task-completed");
     }
   });
 }
