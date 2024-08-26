@@ -8,7 +8,7 @@ program
   .version("0.8.0");
 
 program
-  .command("count")
+  .command("count_words")
   .description("Count the number of words in a file")
   .argument("<file>", "file to count")
   .action((file) => {
@@ -38,6 +38,21 @@ program
       } else {
         const lines = data.split("\n").length;
         console.log(`There are ${lines} sentences in ${file}`);
+      }
+    });
+  });
+
+program
+  .command("count_letters")
+  .description("Count the number of words in a file")
+  .argument("<file>", "file to count")
+  .action((file) => {
+    fs.readFile(file, "utf8", (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const letters = data.replace(/[^a-zA-Z]/g, "").length;
+        console.log(`There are ${letters} letters in ${file}`);
       }
     });
   });
