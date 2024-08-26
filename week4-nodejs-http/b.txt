@@ -1,0 +1,3 @@
+learning, how to create cli
+how to run different commands
+on the given file
