@@ -1,5 +1,5 @@
-const fs = require("fs");
+const path = require("path");
 
-fs.readFile("a.txt", "utf-8", function (err, data) {
-  console.log(data);
-});
+console.log(__dirname);
+
+console.log(path.join(__dirname, "index.js"));
