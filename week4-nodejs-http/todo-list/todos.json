@@ -1,0 +1,30 @@
+[
+  {
+    "task": "go and travel",
+    "done": false
+  },
+  {
+    "task": "go to home and meet your loved ones",
+    "done": true
+  },
+  {
+    "task": "go to gym",
+    "done": false
+  },
+  {
+    "task": "attend the class",
+    "done": false
+  },
+  {
+    "task": "read some pages",
+    "done": false
+  },
+  {
+    "task": "write some code",
+    "done": false
+  },
+  {
+    "task": "cook some meal",
+    "done": false
+  }
+]
