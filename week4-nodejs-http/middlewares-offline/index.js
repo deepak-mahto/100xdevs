@@ -16,7 +16,7 @@ app.get("/ride2", function (req, res) {
     });
   } else {
     res.status(411).send({
-      msg: "Sorry you are not of the age to ride",
+      msg: "Sorry you are not of the age yet",
     });
   }
 });
