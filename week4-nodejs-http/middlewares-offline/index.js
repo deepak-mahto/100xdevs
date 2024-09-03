@@ -1,14 +1,6 @@
 const express = require("express");
 const app = express();
 
-function isOldEnough(age) {
-  if (age >= 14) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 function isOldEnoughMiddleware(req, res, next) {
   const age = req.query.age;
   if (age >= 14) {
