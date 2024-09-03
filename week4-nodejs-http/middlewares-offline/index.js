@@ -9,28 +9,25 @@ function isOldEnough(age) {
   }
 }
 
-app.get("/ride2", function (req, res) {
-  if (isOldEnough(req.query.age)) {
-    res.status(200).send({
-      msg: "Successfully riden the ride 2",
-    });
+function isOldEnoughMiddleware(req, res, next) {
+  const age = req.query.age;
+  if (age >= 14) {
+    next();
   } else {
-    res.status(411).send({
-      msg: "Sorry you are not of the age yet",
-    });
+    res.status(411).send({ msg: "Sorry you are not of the age yet" });
   }
+}
+
+app.get("/ride2", isOldEnoughMiddleware, function (req, res) {
+  res.status(200).send({
+    msg: "Successfully riden the ride 2",
+  });
 });
 
-app.get("/ride1", function (req, res) {
-  if (isOldEnough(req.query.age)) {
-    res.status(200).send({
-      msg: "Successfully riden the ride 1",
-    });
-  } else {
-    res.status(411).send({
-      msg: "Sorry you are not of the age to ride",
-    });
-  }
+app.get("/ride1", isOldEnoughMiddleware, function (req, res) {
+  res.status(200).send({
+    msg: "Successfully riden the ride 1",
+  });
 });
 
 app.listen(3000);
