@@ -10,7 +10,9 @@ function isOldEnoughMiddleware(req, res, next) {
   }
 }
 
-app.get("/ride2", isOldEnoughMiddleware, function (req, res) {
+
+// use middleware with each route handler - 1
+app.get("/ride2", isOldEnoughMiddleware, function (req, res) {  
   res.status(200).send({
     msg: "Successfully riden the ride 2",
   });
