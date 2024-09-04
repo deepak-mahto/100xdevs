@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-// loogs the method, url and timestamp
+// logs the method, url and timestamp
 
 function loggerMiddleware(req, res, next) {
   console.log(`Method is ${req.method}`);
