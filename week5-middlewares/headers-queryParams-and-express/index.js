@@ -5,8 +5,10 @@ const app = express();
 
 function loggerMiddleware(req, res, next) {
   console.log(`Method is ${req.method}`);
-  console.log(`URL is ${req.url}`);
+  console.log(`Route is ${req.url}`);
+  console.log(`Host is ${req.hostname}`);
   console.log(new Date());
+  next();
 }
 
 app.use(loggerMiddleware);
