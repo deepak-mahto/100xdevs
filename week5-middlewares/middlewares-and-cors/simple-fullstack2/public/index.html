@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CalSum</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"></script>
+    <script>
+      async function sendReq() {
+        try {
+          const response = await axios.post("http://localhost:3000/sum", {
+            a: document.getElementById("a").value,
+            b: document.getElementById("b").value,
+          });
+          document.getElementById("ans").innerHTML = response.data.answer;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="a" placeholder="Enter value a" />
+    <input type="text" id="b" placeholder="Enter value b" />
+
+    <button id="button" onclick="sendReq()">Find sum</button>
+    <div id="ans"></div>
+  </body>
+</html>
