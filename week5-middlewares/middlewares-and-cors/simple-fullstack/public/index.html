@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculate</title>
+    <script>
+      async function sendRequest() {
+        const a = document.getElementById("inp-a").value;
+        const b = document.getElementById("inp-b").value;
+
+        try {
+          const response = await fetch("http://localhost:3000/sum", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              a: a,
+              b: b,
+            }),
+          });
+          const data = await response.json();
+          document.getElementById("answer").innerHTML = data.answer;
+        } catch (err) {
+          console.log(err.message);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <input type="text" id="inp-a" placeholder="Enter value a" />
+    <input type="text" id="inp-b" placeholder="Enter value b" />
+
+    <button id="button" onclick="sendRequest()">Add</button>
+    <div id="answer"></div>
+  </body>
+</html>
