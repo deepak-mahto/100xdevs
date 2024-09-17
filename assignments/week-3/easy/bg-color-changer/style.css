@@ -35,7 +35,19 @@
 
 .button {
   margin-top: -7px;
-  width: 24.3ch;
+}
+
+.inp-btn-cont > button {
+  margin-left: 5px;
+}
+
+.style {
+  height: calc(25% - 10px);
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .color-container {
@@ -48,5 +60,10 @@
   align-items: center;
   gap: 10px;
   border: none;
+  border-radius: 8px;
   background-color: white;
+}
+
+.font-color {
+  color: white;
 }
