@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quiz App</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div id="m-container">
@@ -24,25 +25,37 @@
           app.appendChild(questionContainer(quizData[currentQuestionIndex]));
           app.appendChild(button());
         } else {
-          const h2 = document.createElement("h2");
-          h2.innerHTML = "Quiz Completed";
+          const resultContainer = document.createElement("div");
+          resultContainer.classList.add("questionCont");
+          const h1 = document.createElement("h1");
+          h1.innerHTML = "Quiz Completed";
 
           const p = document.createElement("p");
+          p.style.fontSize = "1.9rem";
           p.innerHTML = `Your Score: ${score} / ${quizData.length}`;
 
-          app.appendChild(h2);
-          app.appendChild(p);
+          resultContainer.appendChild(h1);
+          resultContainer.appendChild(p);
+          app.appendChild(resultContainer);
+
+          const button = document.createElement("button");
+          button.innerHTML = "Restart";
+          button.classList.add("button");
+          button.onclick = () => location.reload();
+          app.appendChild(button);
         }
       }
 
       function questionContainer(questionObj) {
         const questionContainer = document.createElement("div");
-        const question = document.createElement("h2");
+        questionContainer.classList.add("questionCont");
+        const question = document.createElement("h1");
         question.innerHTML = questionObj.question;
         questionContainer.appendChild(question);
 
         const options = document.createElement("ul");
         options.setAttribute("type", "none");
+        options.classList.add("flex-start");
 
         for (let key in questionObj.options) {
           const input = document.createElement("input");
@@ -67,6 +80,7 @@
 
       function button() {
         const submitButton = document.createElement("button");
+        submitButton.classList.add("button");
         submitButton.innerHTML = "Next";
 
         submitButton.onclick = () => {

@@ -26,7 +26,7 @@ export const quizData = [
       a: "Hypertext Markup Language",
       b: "Hypertext Markdown Language",
       c: "Hyperloop Machine Language",
-      d: "Helicopters Terminals Motorboats Lamborginis",
+      d: "Hypertext Machine Learning",
     },
     correct: "a",
   },
