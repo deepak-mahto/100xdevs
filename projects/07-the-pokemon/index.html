@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Pokemon</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h1><img src="./the-pok.png" alt="" /></h1>
+
+    <div class="controls">
+      <select id="category-input">
+        <option value="all">All</option>
+        <option value="fire">Fire</option>
+        <option value="water">Water</option>
+        <option value="grass">Grass</option>
+        <option value="ground">Ground</option>
+        <option value="rock">Rock</option>
+        <option value="fairy">Fairy</option>
+        <option value="poison">Poison</option>
+        <option value="bug">Bug</option>
+        <option value="dragon">Dragon</option>
+        <option value="psychic">Psychic</option>
+        <option value="flying">Flying</option>
+        <option value="fighting">Fighting</option>
+        <option value="normal">Normal</option>
+      </select>
+
+      <input
+        type="number"
+        id="number-input"
+        placeholder="Number of Pokemon"
+        min="1"
+        max="200"
+      />
+      <button id="generate-btn">Generate</button>
+    </div>
+
+    <div class="poke-container" id="poke-container"></div>
+
+    <script>
+      const poke_container = document.getElementById("poke-container");
+      const categoryInput = document.getElementById("category-input");
+      const numberInput = document.getElementById("number-input");
+      const generateBtn = document.getElementById("generate-btn");
+
+      const pokemon_count = 500;
+      const colors = {
+        fire: "#FDDFDF",
+        grass: "#DEFDE0",
+        electric: "#FCF7DE",
+        water: "#DEF3FD",
+        ground: "#f4e7da",
+        rock: "#d5d5d4",
+        fairy: "#fceaff",
+        poison: "#98d7a5",
+        bug: "#f8d5a3",
+        dragon: "#97b3e6",
+        psychic: "#eaeda1",
+        flying: "#F5F5F5",
+        fighting: "#E6E0D4",
+        normal: "#F5F5F5",
+      };
+
+      const main_types = Object.keys(colors);
+
+      const state = {
+        pokemons: [],
+        filteredPokemons: [],
+        category: "all",
+        numberOfPokemons: 0,
+      };
+
+      const fetchAllPokemons = async () => {
+        const allPokemons = [];
+
+        for (let i = 1; i <= pokemon_count; i++) {
+          const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+          const res = await fetch(url);
+          const data = await res.json();
+          allPokemons.push(data);
+        }
+
+        state.pokemons = allPokemons;
+        filterAndRenderPokemons();
+      };
+
+      const filterAndRenderPokemons = () => {
+        const { pokemons, category, numberOfPokemons } = state;
+
+        let filtered = pokemons;
+
+        if (category !== "all") {
+          filtered = pokemons.filter((pokemon) => {
+            const poke_types = pokemon.types.map((t) =>
+              t.type.name.toLowerCase()
+            );
+            return poke_types.includes(category);
+          });
+        }
+
+        state.filteredPokemons = filtered.slice(
+          0,
+          Math.min(numberOfPokemons, filtered.length)
+        );
+
+        render();
+      };
+
+      const render = () => {
+        poke_container.innerHTML = "";
+
+        state.filteredPokemons.forEach((pokemon) => createPokemonCard(pokemon));
+      };
+
+      const createPokemonCard = (pokemon) => {
+        const pokemonEl = document.createElement("div");
+        pokemonEl.classList.add("pokemon");
+
+        const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+        const id = pokemon.id.toString().padStart(3, "0");
+
+        const poke_types = pokemon.types.map((type) => type.type.name);
+        const type = main_types.find((type) => poke_types.indexOf(type) > -1);
+        const color = colors[type];
+
+        pokemonEl.style.backgroundColor = color;
+
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("img-container");
+
+        const img = document.createElement("img");
+        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+        img.alt = name;
+        imgContainer.appendChild(img);
+
+        const infoDiv = document.createElement("div");
+        infoDiv.classList.add("info");
+
+        const numberSpan = document.createElement("span");
+        numberSpan.classList.add("number");
+        numberSpan.textContent = `#${id}`;
+        infoDiv.appendChild(numberSpan);
+
+        const nameHeading = document.createElement("h3");
+        nameHeading.classList.add("name");
+        nameHeading.textContent = name;
+        infoDiv.appendChild(nameHeading);
+
+        const typeSmall = document.createElement("small");
+        typeSmall.classList.add("type");
+        typeSmall.innerHTML = `Type: <span>${type}</span>`;
+        infoDiv.appendChild(typeSmall);
+
+        pokemonEl.appendChild(imgContainer);
+        pokemonEl.appendChild(infoDiv);
+
+        poke_container.appendChild(pokemonEl);
+      };
+
+      generateBtn.addEventListener("click", () => {
+        state.numberOfPokemons = parseInt(numberInput.value);
+        state.category = categoryInput.value.toLowerCase();
+        filterAndRenderPokemons();
+      });
+
+      fetchAllPokemons();
+    </script>
+  </body>
+</html>

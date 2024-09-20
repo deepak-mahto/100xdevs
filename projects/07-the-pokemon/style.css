@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #f2f2f2;
+  font-family: "Lato", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.controls input,
+.controls select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.controls > input {
+  width: 190px;
+}
+
+.controls input:focus,
+.controls select:focus {
+  border-color: #888;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #f7a832;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ce8923;
+}
+
+.poke-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.pokemon {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 15px rgba(100, 100, 100, 0.3);
+  text-align: center;
+  padding: 20px;
+  width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pokemon:hover {
+  border: 2px solid rgb(201, 130, 0);
+  cursor: pointer;
+}
+
+.pokemon:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon .img-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+}
+
+.pokemon .img-container img {
+  max-width: 100%;
+  margin-top: 15px;
+}
+
+.pokemon .info {
+  margin-top: 15px;
+}
+
+.pokemon .info .number {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.9em;
+}
+
+.pokemon .info .name {
+  margin: 15px 0 10px;
+  letter-spacing: 1.5px;
+  font-weight: 400;
+}
+
+.pokemon .info .type span {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 3px 6px;
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+@media screen and (max-width: 480px) {
+  body > h1 > img {
+    width: 400px;
+  }
+}
