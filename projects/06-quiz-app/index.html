@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="m-container">
+      <div id="app"></div>
+    </div>
+
+    <script type="module">
+      import { quizData } from "./data.js";
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+
+      function renderApp() {
+        const app = document.getElementById("app");
+        app.innerHTML = "";
+
+        if (currentQuestionIndex < quizData.length) {
+          app.appendChild(questionContainer(quizData[currentQuestionIndex]));
+          app.appendChild(button());
+        } else {
+          const resultContainer = document.createElement("div");
+          resultContainer.classList.add("questionCont");
+          const h1 = document.createElement("h1");
+          h1.innerHTML = "Quiz Completed";
+
+          const p = document.createElement("p");
+          p.style.fontSize = "1.9rem";
+          p.innerHTML = `Your Score: ${score} / ${quizData.length}`;
+
+          resultContainer.appendChild(h1);
+          resultContainer.appendChild(p);
+          app.appendChild(resultContainer);
+
+          const button = document.createElement("button");
+          button.innerHTML = "Restart";
+          button.classList.add("button");
+          button.onclick = () => location.reload();
+          app.appendChild(button);
+        }
+      }
+
+      function questionContainer(questionObj) {
+        const questionContainer = document.createElement("div");
+        questionContainer.classList.add("questionCont");
+        const question = document.createElement("h1");
+        question.innerHTML = questionObj.question;
+        questionContainer.appendChild(question);
+
+        const options = document.createElement("ul");
+        options.setAttribute("type", "none");
+        options.classList.add("flex-start");
+
+        for (let key in questionObj.options) {
+          const input = document.createElement("input");
+          input.setAttribute("type", "radio");
+          input.setAttribute("name", "answer");
+          input.setAttribute("value", key);
+          input.setAttribute("id", `option-${key}`);
+
+          const label = document.createElement("label");
+          label.setAttribute("for", `option-${key}`);
+          label.innerHTML = `${questionObj.options[key]}`;
+
+          const list = document.createElement("li");
+          list.appendChild(input);
+          list.appendChild(label);
+          options.appendChild(list);
+        }
+
+        questionContainer.appendChild(options);
+        return questionContainer;
+      }
+
+      function button() {
+        const submitButton = document.createElement("button");
+        submitButton.classList.add("button");
+        submitButton.innerHTML = "Next";
+
+        submitButton.onclick = () => {
+          const selectedAnswer = document.querySelector(
+            'input[name="answer"]:checked'
+          );
+
+          if (!selectedAnswer) {
+            alert("Please select an answer");
+            return;
+          }
+
+          const answerValue = selectedAnswer.value;
+          if (answerValue === quizData[currentQuestionIndex].correct) {
+            score++;
+          }
+
+          currentQuestionIndex++;
+          renderApp();
+        };
+
+        return submitButton;
+      }
+
+      renderApp();
+    </script>
+  </body>
+</html>
