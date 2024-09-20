@@ -8,7 +8,6 @@
 
 body {
   background: #f2f2f2;
-  background: linear-gradient(to right, #d4d3dd, #efefbb);
   font-family: "Lato", sans-serif;
   display: flex;
   flex-direction: column;
@@ -16,13 +15,6 @@ body {
   justify-content: center;
   padding: 20px;
   min-height: 100vh;
-}
-
-h1 {
-  letter-spacing: 3px;
-  font-weight: 400;
-  color: #333;
-  margin-bottom: 20px;
 }
 
 .controls {
@@ -43,6 +35,10 @@ h1 {
   transition: all 0.3s ease;
 }
 
+.controls > input {
+  width: 190px;
+}
+
 .controls input:focus,
 .controls select:focus {
   border-color: #888;
@@ -50,7 +46,7 @@ h1 {
 
 button {
   padding: 10px 20px;
-  background-color: #3498db;
+  background-color: #f7a832;
   color: white;
   border: none;
   border-radius: 8px;
@@ -60,7 +56,7 @@ button {
 }
 
 button:hover {
-  background-color: #2980b9;
+  background-color: #ce8923;
 }
 
 .poke-container {
@@ -74,12 +70,17 @@ button:hover {
 
 .pokemon {
   background-color: white;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 6px 15px rgba(100, 100, 100, 0.3);
   text-align: center;
   padding: 20px;
   width: 200px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pokemon:hover {
+  border: 2px solid rgb(201, 130, 0);
+  cursor: pointer;
 }
 
 .pokemon:hover {
@@ -122,4 +123,10 @@ button:hover {
   padding: 3px 6px;
   border-radius: 5px;
   font-size: 0.85em;
+}
+
+@media screen and (max-width: 480px) {
+  body > h1 > img {
+    width: 400px;
+  }
 }

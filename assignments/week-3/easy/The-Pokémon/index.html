@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>Pokedex</h1>
+    <h1><img src="./the-pok.png" alt="" /></h1>
 
     <div class="controls">
       <select id="category-input">
@@ -30,7 +30,7 @@
       <input
         type="number"
         id="number-input"
-        placeholder="Number of Pokémon"
+        placeholder="Number of Pokemon"
         min="1"
         max="200"
       />
@@ -95,9 +95,6 @@
           filtered = pokemons.filter((pokemon) => {
             const poke_types = pokemon.types.map((t) =>
               t.type.name.toLowerCase()
-            );
-            console.log(
-              `Pokemon: ${pokemon.name}, Types: ${poke_types}, Category: ${category}`
             );
             return poke_types.includes(category);
           });
