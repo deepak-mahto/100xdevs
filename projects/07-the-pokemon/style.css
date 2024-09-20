@@ -79,7 +79,6 @@ button:hover {
 }
 
 .pokemon:hover {
-  border: 2px solid rgb(201, 130, 0);
   cursor: pointer;
 }
 
