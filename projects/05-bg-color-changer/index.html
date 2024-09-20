@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bg-color-changer</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="m-container">
+      <div id="app"></div>
+    </div>
+    <script>
+      let colors = [];
+
+      function renderApp() {
+        const app = document.getElementById("app");
+        app.appendChild(bgColorChangerComponent());
+      }
+
+      function bgColorChangerComponent() {
+        const bgColorChangerDiv = document.createElement("div");
+        bgColorChangerDiv.classList.add("bg-changer");
+
+        bgColorChangerDiv.appendChild(inputBoxAndButtonComponent());
+
+        return bgColorChangerDiv;
+      }
+
+      function inputBoxAndButtonComponent() {
+        const inputBoxAndButtonDiv = document.createElement("div");
+        inputBoxAndButtonDiv.classList.add("input-button-container");
+
+        const inputAndButtonContainer = document.createElement("div");
+        inputAndButtonContainer.classList.add("inp-btn-cont");
+
+        const inputElement = document.createElement("input");
+        inputElement.setAttribute("placeholder", "Enter colour");
+        inputElement.classList.add("input", "style");
+
+        const buttonElement = document.createElement("button");
+        buttonElement.classList.add("button", "style");
+        buttonElement.innerHTML = "Add colour";
+
+        const colourContainer = colourContainerComponent();
+
+        buttonElement.addEventListener("click", () => {
+          if (inputElement.value === "") {
+            alert("Please enter colour");
+            return;
+          }
+
+          colors.push({
+            color:
+              inputElement.value.charAt(0).toUpperCase() +
+              inputElement.value.slice(1),
+          });
+
+          inputElement.value = "";
+
+          colourContainer.innerHTML = "";
+
+          for (let i = 0; i < colors.length; i++) {
+            const button = document.createElement("button");
+            button.classList.add("style", "font-color");
+            button.innerHTML = colors[i].color;
+            button.style.backgroundColor = colors[i].color;
+            button.addEventListener("click", () => {
+              const app = document.getElementById("app");
+              app.style.backgroundColor = colors[i].color.toLowerCase();
+            });
+            colourContainer.appendChild(button);
+          }
+        });
+
+        inputAndButtonContainer.appendChild(inputElement);
+        inputAndButtonContainer.appendChild(buttonElement);
+        inputBoxAndButtonDiv.appendChild(inputAndButtonContainer);
+        inputBoxAndButtonDiv.appendChild(colourContainer);
+
+        return inputBoxAndButtonDiv;
+      }
+
+      function colourContainerComponent() {
+        const colourContainer = document.createElement("div");
+        colourContainer.classList.add("color-container");
+        return colourContainer;
+      }
+
+      renderApp();
+    </script>
+  </body>
+</html>
