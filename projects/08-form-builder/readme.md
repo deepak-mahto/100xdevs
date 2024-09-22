@@ -1,2 +1,1 @@
-Form builder - DOM
-Live link: https://08-form-builder.netlify.app/
+Form builder - https://08-form-builder.netlify.app/

@@ -1,2 +1,1 @@
-Background color changer app based on DOM
-Live link: https://05-bg-color-changer.netlify.app/
+Background color changer app based on DOM - https://05-bg-color-changer.netlify.app/
