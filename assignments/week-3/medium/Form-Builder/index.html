@@ -9,20 +9,29 @@
   <body>
     <div id="m-container">
       <div id="form-builder">
-        <h3>Select Field Type</h3>
-        <select name="types" id="types">
+        <h1>Form Builder</h1>
+        <h3>Select Field Type :</h3>
+        <select name="types" id="types" class="select">
           <option value="text">Text</option>
           <option value="email">Email</option>
           <option value="password">Password</option>
           <option value="checkbox">Checkbox</option>
+          <option value="Button">Button</option>
         </select>
-        <h3>Enter Label</h3>
-        <input type="text" id="label-input" placeholder="Enter field label" />
-        <button id="add-field-btn">Add field</button>
+        <h3>Enter Label :</h3>
+        <input
+          type="text"
+          id="label-input"
+          placeholder="Enter field label"
+          class="input"
+        />
+        <div>
+          <button id="add-field-btn" class="width">Add field</button>
+        </div>
       </div>
 
       <div id="form-preview">
-        <h3>Form Preview</h3>
+        <h1>Form Preview</h1>
         <form id="dynamic-form"></form>
       </div>
     </div>
@@ -37,28 +46,33 @@
         const selectedType = typeSelect.value;
         const labelText = labelInput.value;
 
-        if (labelText.trim() === "") {
-          alert("Please enter a label.");
-          return;
-        }
-
         const fieldDiv = document.createElement("div");
         fieldDiv.classList.add("form-field");
 
-        const label = document.createElement("label");
-        label.textContent = labelText;
-        fieldDiv.appendChild(label);
-
         let input;
 
-        if (selectedType === "checkbox") {
-          input = document.createElement("input");
-          input.type = "checkbox";
+        if (selectedType === "Button") {
+          input = document.createElement("button");
+          input.type = "submit";
+          input.textContent = labelText === "" ? "Submit" : labelText;
         } else {
-          input = document.createElement("input");
-          input.type = selectedType;
-        }
+          if (labelText.trim() === "") {
+            alert("Please enter a label.");
+            return;
+          }
 
+          const label = document.createElement("label");
+          label.textContent = labelText;
+          fieldDiv.appendChild(label);
+
+          input = document.createElement("input");
+
+          if (selectedType === "checkbox") {
+            input.type = "checkbox";
+          } else {
+            input.type = selectedType;
+          }
+        }
         fieldDiv.appendChild(input);
         formPreview.appendChild(fieldDiv);
 
