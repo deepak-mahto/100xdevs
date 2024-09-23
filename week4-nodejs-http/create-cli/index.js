@@ -29,7 +29,7 @@ program
 
 program
   .command("count_sentences")
-  .description("Count the number of words in a file")
+  .description("Count the number of sentences in a file")
   .argument("<file>", "file to count")
   .action((file) => {
     fs.readFile(file, "utf8", (err, data) => {
@@ -44,7 +44,7 @@ program
 
 program
   .command("count_letters")
-  .description("Count the number of words in a file")
+  .description("Count the number of letters in a file")
   .argument("<file>", "file to count")
   .action((file) => {
     fs.readFile(file, "utf8", (err, data) => {
