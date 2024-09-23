@@ -53,15 +53,21 @@ app.post("/", function (req, res) {
 
 // PUT - User can replace a kedney, make it healthy
 app.put("/", function (req, res) {
-  for (let i = 0; i < users[0].kidneys.length; i++) {
-    users[0].kidneys[i].healthy = true;
+  if (isThereAtLeastOneUnhealthyKidney()) {
+    for (let i = 0; i < users[0].kidneys.length; i++) {
+      users[0].kidneys[i].healthy = true;
+    }
+    res.json({});
+  } else {
+    res.status(411).json({
+      msg: "You have healthy kidneys already",
+    });
   }
-  res.json({});
 });
 
 // DELETE - User can remove a kidney
 app.delete("/", function (req, res) {
-  if (isThereAtLeastOneUnhealthyKidney) {
+  if (isThereAtLeastOneUnhealthyKidney()) {
     const newKidneys = [];
     for (let i = 0; i < users[0].kidneys.length; i++) {
       if (users[0].kidneys[i].healthy) {
