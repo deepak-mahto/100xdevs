@@ -122,4 +122,21 @@ app.post("/signin", function (req, res) {
   }
 });
 
+app.get("/me", function (req, res) {
+  const token = req.headers.authorization;
+
+  const user = users.find((user) => user.token === token);
+
+  if (user) {
+    res.send({
+      username: user.username,
+      password: user.password,
+    });
+  } else {
+    res.send({
+      message: "Unauthorized",
+    });
+  }
+});
+
 app.listen(3000);
