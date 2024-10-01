@@ -7,6 +7,10 @@ app.use(express.json());
 
 const users = [];
 
+app.get("/", function (req, res) {
+  res.sendFile(__dirname + "/public/index.html");
+});
+
 app.post("/signup", function (req, res) {
   const username = req.body.username;
   const password = req.body.password;
@@ -59,7 +63,7 @@ app.post("/signin", function (req, res) {
 });
 
 function auth(req, res, next) {
-  const token = req.headers.authorization;
+  const token = req.headers.token;
   const decodedInformation = jwt.verify(token, JWTSECRET);
 
   if (decodedInformation.username) {
