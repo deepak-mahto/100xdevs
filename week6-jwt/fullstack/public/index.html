@@ -39,6 +39,10 @@
           response.data.password;
       }
       getUserInformation();
+
+      function logout() {
+        localStorage.removeItem("token");
+      }
     </script>
   </head>
   <body>
