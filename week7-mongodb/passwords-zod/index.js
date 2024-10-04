@@ -4,6 +4,7 @@ const { TodoModel, UserModel } = require("./db");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const { auth, JWT_SECRET } = require("./auth");
+const { z } = require("zod");
 
 mongoose.connect("");
 const app = express();
@@ -11,16 +12,37 @@ const app = express();
 app.use(express.json());
 
 app.post("/signup", async function (req, res) {
+  // input validation using zod
+  const requireBody = z.object({
+    email: z.string().min(3).max(100).email(),
+    password: z.string().min(5).max(50),
+    name: z.string().min(3).max(50),
+  });
+
+  // parsedData = requireBody.parse(req.body);
+
+  // safe parsing
+  const parseDataSuccess = requireBody.safeParse(req.body);
+
+  if (!parseDataSuccess.success) {
+    res.json({
+      message: "Incorrect format",
+    });
+    return;
+  }
+
   const email = req.body.email;
   const password = req.body.password;
   const name = req.body.name;
 
-  if (typeof email !== String || email < 5 || !email.contains("@")) {
-    res.json({
-      message: "Email incorrect",
-    });
-    return;
-  }
+  // input validation without zod library
+
+  // if (typeof email !== String || email < 5 || !email.contains("@")) {
+  //   res.json({
+  //     message: "Email incorrect",
+  //   });
+  //   return;
+  // }
 
   let errorThrown = false;
   try {
