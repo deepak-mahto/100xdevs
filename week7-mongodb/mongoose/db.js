@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.ObjectId;
 
 const User = new Schema({
-  email: { type: String, unique: true },
+  email: String,
   password: String,
   name: String,
 });
@@ -14,8 +14,8 @@ const Todo = new Schema({
   userId: ObjectId,
 });
 
-const UserModel = mongoose.Schema("user", User);
-const TodoModel = mongoose.Schema("todos", Todo);
+const UserModel = mongoose.model("users", User);
+const TodoModel = mongoose.model("todos", Todo);
 
 module.exports = {
   UserModel: UserModel,
