@@ -1,6 +1,7 @@
 const express = require("express");
 const { TodoModel, UserModel } = require("./db");
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 const { auth, JWT_SECRET } = require("./auth");
 
 mongoose.connect("");
