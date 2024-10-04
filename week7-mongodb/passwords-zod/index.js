@@ -15,6 +15,13 @@ app.post("/signup", async function (req, res) {
   const password = req.body.password;
   const name = req.body.name;
 
+  if (typeof email !== String || email < 5 || !email.contains("@")) {
+    res.json({
+      message: "Email incorrect",
+    });
+    return;
+  }
+
   let errorThrown = false;
   try {
     const hashedPassword = await bcrypt.hash(password, 5);
