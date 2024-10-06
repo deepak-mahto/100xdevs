@@ -1,18 +1,18 @@
 const { Router } = require("express");
 const userRouter = Router();
 
-userRouter.post("/signup", () => {
+userRouter.post("/signup", (req, res) => {
   res.json({
     message: "Sign up endpoint.",
   });
 });
 
-userRouter.post("/signin", () => {
+userRouter.post("/signin", (req, res) => {
   res.json({
     message: "Sign in endpoint.",
   });
 });
 
-module.exports({
+module.exports = {
   userRouter: userRouter,
-});
+};
