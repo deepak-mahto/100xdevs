@@ -10,6 +10,10 @@ adminRouter.post("/signin", (req, res) => {
   res.json("Signin endpoint");
 });
 
+adminRouter.post("/", (req, res) => {
+  res.json("Course update endpoint");
+});
+
 adminRouter.put("/", (req, res) => {
   res.json("Course update endpoint");
 });
