@@ -1,23 +1,58 @@
 const { Router } = require("express");
 const userRouter = Router();
 const jwt = require("jsonwebtoken");
+const { z } = require("zod");
+const bcrypt = require("bcrypt");
 const { userModel } = require("../db");
 
 userRouter.post("/signup", async (req, res) => {
-  const { email, password, firstName, lastName } = req.body; // todo: adding zod validation
-  // todo: hash the password so that plain text password will not get stored in the db
-
-  // todo: add try catch
-  await userModel.create({
-    email: email,
-    password: password,
-    firstName: firstName,
-    lastName: lastName,
+  // todo: adding zod validation
+  const requireBody = z.Object({
+    email: z.string().min(3).max(100),
+    password: z.string().min(3).max(100),
+    firstName: z.string().min(3).max(50),
+    lastName: z.string().min(3).max(50),
   });
 
-  res.json({
-    message: "Sign up succeeded",
-  });
+  const parseDataSuccess = requireBody.safeParse(req.body);
+
+  if (!parseDataSuccess.success) {
+    res.json({
+      message: "Incorrect format",
+      error: parseDataSuccess.error,
+    });
+    return;
+  }
+
+  const email = req.body.email;
+  const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+
+  let errorThrown = false;
+  try {
+    // todo: hash the password so that plain text password will not get stored in the db
+    const hashedPassword = await bcrypt.hash(password, 5);
+
+    // todo: add try catch
+    await userModel.create({
+      email: email,
+      password: hashedPassword,
+      firstName: firstName,
+      lastName: lastName,
+    });
+  } catch (error) {
+    res.json({
+      message: "User already exist",
+    });
+    errorThrown = true;
+  }
+
+  if (!errorThrown) {
+    res.json({
+      message: "Sign up succeeded",
+    });
+  }
 });
 
 userRouter.post("/signin", async (req, res) => {
