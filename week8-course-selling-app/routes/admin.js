@@ -10,11 +10,11 @@ adminRouter.post("/signin", (req, res) => {
   res.json("Signin endpoint");
 });
 
-adminRouter.put("/course", (req, res) => {
+adminRouter.put("/", (req, res) => {
   res.json("Course update endpoint");
 });
 
-adminRouter.get("/course/bulk", (req, res) => {
+adminRouter.get("/bulk", (req, res) => {
   res.json("Show courses in bulk endpoint");
 });
 
