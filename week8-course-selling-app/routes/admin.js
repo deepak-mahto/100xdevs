@@ -3,6 +3,7 @@ const adminRouter = Router();
 const jwt = require("jsonwebtoken");
 const { adminModel } = require("../db");
 const bcrypt = require("bcrypt");
+const { JWT_ADMIN_PASSWORD } = require("../config");
 
 adminRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
@@ -67,7 +68,7 @@ adminRouter.post("/signin", async (req, res) => {
       {
         id: admin._id,
       },
-      process.env.JWT_ADMIN_PASSWORD
+      JWT_ADMIN_PASSWORD
     );
 
     // todo: do cookie logic
@@ -82,9 +83,7 @@ adminRouter.post("/signin", async (req, res) => {
   }
 });
 
-adminRouter.post("/course", (req, res) => {
-  res.json("Course update endpoint");
-});
+adminRouter.post("/course", (req, res) => {});
 
 adminRouter.put("/course", (req, res) => {
   res.json("Course update endpoint");

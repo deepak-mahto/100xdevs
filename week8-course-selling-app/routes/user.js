@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const { z } = require("zod");
 const bcrypt = require("bcrypt");
 const { userModel } = require("../db");
+const { JWT_USER_PASSWORD } = require("../config");
 
 userRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
@@ -69,7 +70,7 @@ userRouter.post("/signin", async (req, res) => {
       {
         id: user._id,
       },
-      process.env.JWT_USER_PASSWORD
+      JWT_USER_PASSWORD
     );
 
     // todo: do cookie logic
