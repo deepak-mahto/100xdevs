@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const adminRouter = Router();
 const jwt = require("jsonwebtoken");
-const { adminModel } = require("../db");
+const { adminModel, courseModel } = require("../db");
 const bcrypt = require("bcrypt");
 const { z } = require("zod");
 const { JWT_ADMIN_PASSWORD } = require("../config");
+const course = require("./course");
+const { adminMiddleware } = require("../middleware/admin");
 
 adminRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
@@ -91,14 +93,58 @@ adminRouter.post("/signin", async (req, res) => {
   }
 });
 
-adminRouter.post("/course", (req, res) => {});
+adminRouter.post("/course", adminMiddleware, async (req, res) => {
+  const adminId = req.userId;
+  const { title, description, imageUrl, price } = req.body;
 
-adminRouter.put("/course", (req, res) => {
-  res.json("Course update endpoint");
+  const course = await courseModel.create({
+    title: title,
+    description: description,
+    imageUrl: imageUrl,
+    price: price,
+    creatorId: adminId,
+  });
+
+  res.json({
+    message: "Course created",
+    courseId: course._id,
+  });
 });
 
-adminRouter.get("/course/bulk", (req, res) => {
-  res.json("Show courses in bulk endpoint");
+adminRouter.put("/course", adminMiddleware, async (req, res) => {
+  const adminId = req.userId;
+
+  const { title, description, imageUrl, price, courseId } = req.body;
+
+  const course = await adminModel.updateOne(
+    {
+      _id: courseId,
+      creatorId: adminId,
+    },
+    {
+      title: title,
+      description: description,
+      imageUrl: imageUrl,
+      price: price,
+    }
+  );
+
+  res.json({
+    message: "Course updated",
+    courseId: course._id,
+  });
+});
+
+adminRouter.get("/course/bulk", adminMiddleware, async (req, res) => {
+  const adminId = req.userId;
+
+  const courses = await adminModel.find({
+    creatorId: adminId,
+  });
+
+  res.json({
+    courses,
+  });
 });
 
 module.exports = {
