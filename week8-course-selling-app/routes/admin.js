@@ -3,11 +3,12 @@ const adminRouter = Router();
 const jwt = require("jsonwebtoken");
 const { adminModel } = require("../db");
 const bcrypt = require("bcrypt");
+const { z } = require("zod");
 const { JWT_ADMIN_PASSWORD } = require("../config");
 
 adminRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
-  const requireBody = z.Object({
+  const requireBody = z.object({
     email: z.string().min(3).max(100),
     password: z.string().min(3).max(100),
     firstName: z.string().min(3).max(50),
@@ -57,16 +58,23 @@ adminRouter.post("/signup", async (req, res) => {
 adminRouter.post("/signin", async (req, res) => {
   const { email, password } = req.body;
 
-  // todo: ideally password should should be hashed, and hence you can't compare the user provided password and the database password
+  // todo: ideally password should be hashed, and hence you can't compare the user provided password and the database password
   const admin = await adminModel.findOne({
     email: email,
-    password: password,
   });
 
-  if (admin) {
+  if (!admin) {
+    res.status(403).json({
+      message: "User in not found on the database",
+    });
+  }
+
+  const passwordMatch = await bcrypt.compare(password, admin.password);
+
+  if (passwordMatch) {
     const token = jwt.sign(
       {
-        id: admin._id,
+        id: passwordMatch._id,
       },
       JWT_ADMIN_PASSWORD
     );
@@ -77,7 +85,7 @@ adminRouter.post("/signin", async (req, res) => {
       token: token,
     });
   } else {
-    res.json({
+    res.status(403).json({
       message: "Incorrect credentials",
     });
   }

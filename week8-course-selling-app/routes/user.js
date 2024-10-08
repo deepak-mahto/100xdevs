@@ -8,7 +8,7 @@ const { JWT_USER_PASSWORD } = require("../config");
 
 userRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
-  const requireBody = z.Object({
+  const requireBody = z.object({
     email: z.string().min(3).max(100),
     password: z.string().min(3).max(100),
     firstName: z.string().min(3).max(50),
@@ -62,13 +62,14 @@ userRouter.post("/signin", async (req, res) => {
   // todo: ideally password should should be hashed, and hence you can't compare the user provided password and the database password
   const user = await userModel.findOne({
     email: email,
-    password: password,
   });
 
-  if (user) {
+  const passwordMatch = await bcrypt.compare(password, user.password);
+
+  if (passwordMatch) {
     const token = jwt.sign(
       {
-        id: user._id,
+        id: passwordMatch._id,
       },
       JWT_USER_PASSWORD
     );
