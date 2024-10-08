@@ -3,8 +3,9 @@ const userRouter = Router();
 const jwt = require("jsonwebtoken");
 const { z } = require("zod");
 const bcrypt = require("bcrypt");
-const { userModel } = require("../db");
+const { userModel, purchaseModel, courseModel } = require("../db");
 const { JWT_USER_PASSWORD } = require("../config");
+const { userMiddleware } = require("../middleware/user");
 
 userRouter.post("/signup", async (req, res) => {
   // todo: adding zod validation
@@ -84,6 +85,23 @@ userRouter.post("/signin", async (req, res) => {
       message: "Incorrect credentials",
     });
   }
+});
+
+userRouter.get("/purchases", userMiddleware, async (req, res) => {
+  const userId = req.userId;
+
+  const purchases = await purchaseModel.find({
+    userId,
+  });
+
+  const courseData = await courseModel.find({
+    _id: { $in: purchases.map((x) => x.courseId) },
+  });
+
+  res.json({
+    purchases,
+    courseData,
+  });
 });
 
 module.exports = {
