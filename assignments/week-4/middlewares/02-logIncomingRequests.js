@@ -9,7 +9,6 @@ function logRequests(req, res, next) {
   const url = req.url;
   const timestamp = new Date().toISOString();
   console.log(`${method} ${url} - ${timestamp}`);
-
   next();
 }
 
