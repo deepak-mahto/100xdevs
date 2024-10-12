@@ -70,7 +70,7 @@ userRouter.post("/signin", async (req, res) => {
   if (passwordMatch) {
     const token = jwt.sign(
       {
-        id: passwordMatch._id,
+        id: user._id,
       },
       JWT_USER_PASSWORD
     );

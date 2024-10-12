@@ -76,7 +76,7 @@ adminRouter.post("/signin", async (req, res) => {
   if (passwordMatch) {
     const token = jwt.sign(
       {
-        id: passwordMatch._id,
+        id: admin._id,
       },
       JWT_ADMIN_PASSWORD
     );
