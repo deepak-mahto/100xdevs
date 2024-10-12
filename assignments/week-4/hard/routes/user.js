@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const userRouter = Router();
 const { z } = require("zod");
 const userMiddleware = require("../middleware/user");
-const { userModel } = require("../database");
+const { userModel, todoModel } = require("../database");
 const { JWT_USER_SECRET } = require("../config");
 
 // User Routes
@@ -71,7 +71,7 @@ userRouter.post("/login", async (req, res) => {
   if (matchedPassword) {
     const token = jwt.sign(
       {
-        id: matchedPassword._id,
+        id: user._id,
       },
       JWT_USER_SECRET
     );
@@ -87,11 +87,40 @@ userRouter.post("/login", async (req, res) => {
   }
 });
 
-userRouter.get("/todos", userMiddleware, (req, res) => {
-  // Implement logic for getting todos for a user
+userRouter.post("/todo", userMiddleware, async (req, res) => {
+  // Implement todo creation logic
+  const userId = req.userId;
+
+  const title = req.body.title;
+  const description = req.body.description;
+
+  const todo = await todoModel.create({
+    title: title,
+    description: description,
+    userId: userId,
+  });
+
+  res.status(200).json({
+    message: "Todo created",
+    todoId: todo._id,
+  });
 });
 
-userRouter.post("/logout", userMiddleware, (req, res) => {
+userRouter.get("/todos", userMiddleware, async (req, res) => {
+  // Implement logic for getting todos for a user
+  const userId = req.userId;
+  console.log(userId);
+
+  const todos = await todoModel.find({
+    userId: userId,
+  });
+
+  res.status(200).json({
+    todos,
+  });
+});
+
+userRouter.post("/logout", userMiddleware, async (req, res) => {
   // Implement logout logic
 });
 
