@@ -24,3 +24,6 @@ const Button = () => {
 };
 
 export default Button;
+
+// conditional rendering - first
+// dependency array, cleanup, fetch inside useEffect

@@ -2,9 +2,12 @@ import React from "react";
 import Button from "../components/Button";
 
 const App = () => {
+  let buttonVisible = true;
+
   return (
     <div>
-      <Button />
+      {buttonVisible ? <Button /> : null}
+      {buttonVisible && <Button />}
     </div>
   );
 };
