@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from "react";
-import StopWatch from "../components/StopWatch";
+import { useState } from "react";
+import Counter from "../components/Counter";
 
 const App = () => {
-  const [buttonVisible, setButtonVisible] = useState(true);
+  const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    setInterval(() => {
-      setButtonVisible((c) => !c);
-    }, 5000);
-  }, []);
-
+  function Increment() {
+    setCount((count) => count + 1);
+  }
   return (
     <div>
-      {/* {buttonVisible ? <StopWatch /> : null} */}
-      {/* {buttonVisible && <StopWatch />} */}
+      <Counter count={count} />
+      <button onClick={Increment}>Increment</button>
     </div>
   );
 };
