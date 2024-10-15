@@ -13,10 +13,16 @@ const Counter = (props) => {
 
   useEffect(
     function () {
+      // logic used for mounting
       console.log("Count has change");
+
+      return function () {
+        // logic used for unmouting
+        console.log("Clean up inside second effect");
+      };
     },
     [props.count]
-  ); // when array dependency is not empty then run the logic it changes (when state variable changes)
+  ); // when array dependency is not empty then run the logic when it changes (when state variable changes)
 
   return (
     <div>
