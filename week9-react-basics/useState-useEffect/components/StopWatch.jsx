@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // mounting, re-rendering, unmounting - lifecycle events
-const Button = () => {
+const StopWatch = () => {
   const [count, setCount] = useState(0);
 
   // hooking into the lifecycle events of react
@@ -9,10 +9,16 @@ const Button = () => {
 
   // useEffect will guard the setIntervals from the re-renders
   useEffect(() => {
-    setInterval(() => {
+    console.log("on mount");
+    let clock = setInterval(() => {
+      console.log("from inside the setInterval");
       setCount((count) => count + 1);
     }, 1000);
-    console.log("mounted");
+
+    return function () {
+      console.log("on unmounted");
+      clearInterval(clock);
+    };
   }, []);
 
   return (
@@ -23,7 +29,7 @@ const Button = () => {
   );
 };
 
-export default Button;
+export default StopWatch;
 
 // conditional rendering - first
 // dependency array, cleanup, fetch inside useEffect
