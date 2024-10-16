@@ -1,7 +1,9 @@
+import ToggleMessage from "./components/ToggleMessage";
+
 const App = () => {
   return (
     <div>
-      <h1>hi there</h1>
+      <ToggleMessage />
     </div>
   );
 };
