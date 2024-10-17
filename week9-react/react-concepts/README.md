@@ -1,1 +1,10 @@
-### Learning hooks - useState and useEffect
+### react concepts
+
+- state
+- components
+- useState
+- tracking re-renders
+- useEffect
+- props
+- conditional rendering
+-
