@@ -1,16 +1,29 @@
-import { useState } from "react";
-import Counter from "./components/Counter";
+// Collapsible section
 
-const App = () => {
-  const [count, setCount] = useState(0);
+import React, { useState } from "react";
 
-  function Increment() {
-    setCount((count) => count + 1);
-  }
+const Collapsible = ({ title, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div>
-      <Counter count={count} />
-      <button onClick={Increment}>Increment</button>
+      <button onClick={() => setIsOpen(!isOpen)}>
+        {title} {isOpen ? "-" : "+"}
+      </button>
+      {isOpen && <div>{children}</div>}
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <Collapsible title="Section 1">
+        <p>This is the content of section 1.</p>
+      </Collapsible>
+      <Collapsible title="Section 2">
+        <p>This is the content of section 2.</p>
+      </Collapsible>
     </div>
   );
 };
