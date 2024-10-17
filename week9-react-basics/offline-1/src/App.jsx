@@ -1,46 +1,62 @@
-import { useState } from "react";
-import Post from "./components/Post";
+import { useEffect, useState } from "react";
 
-const App = () => {
-  const [posts, setPosts] = useState([]);
+function App() {
+  const [currentTab, setCurrentTab] = useState(1);
+  const [tabData, setTabData] = useState({});
+  const [loading, setLoading] = useState(true);
 
-  function addPost() {
-    setPosts([
-      ...posts,
-      {
-        name: "deepak",
-        subtitle: "20k followers",
-        time: "4min ago",
-        image:
-          "https://imgcdn.stablediffusionweb.com/2024/5/21/8e1b0f43-cca9-46e6-a5ff-45785271fc19.jpg",
-        description: "This is description of the this profile",
-      },
-    ]);
-  }
+  useEffect(
+    function () {
+      setLoading(true);
+      fetch(`https://jsonplaceholder.typicode.com/todos/${currentTab}`).then(
+        async (res) => {
+          const json = await res.json();
+          setTabData(json);
+          setLoading(false);
+        }
+      );
+    },
+    [currentTab]
+  );
 
   return (
-    <div
-      style={{
-        background: "aquamarine",
-        height: "100vh",
-      }}
-    >
-      <button onClick={addPost}>Add post</button>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          {posts.map((post) => (
-            <Post
-              name={post.name}
-              subtitle={post.subtitle}
-              time={post.time}
-              image={post.image}
-              description={post.description}
-            />
-          ))}
-        </div>
-      </div>
+    <div>
+      <button
+        onClick={function () {
+          setCurrentTab(1);
+        }}
+        style={{ color: currentTab === 1 ? "red" : "black" }}
+      >
+        Todo #1
+      </button>
+      <button
+        onClick={function () {
+          setCurrentTab(2);
+        }}
+        style={{ color: currentTab === 2 ? "red" : "black" }}
+      >
+        Todo #2
+      </button>
+      <button
+        onClick={function () {
+          setCurrentTab(3);
+        }}
+        style={{ color: currentTab === 3 ? "red" : "black" }}
+      >
+        Todo #3
+      </button>
+      <button
+        onClick={function () {
+          setCurrentTab(4);
+        }}
+        style={{ color: currentTab == 4 ? "red" : "black" }}
+      >
+        Todo #4
+      </button>
+      <br />
+      {loading ? "Loading..." : tabData.title}
     </div>
   );
-};
+}
 
 export default App;
