@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 const App = () => {
   const [currentCount, setCurrentCount] = useState(1);
-  const timer = useRef();
+  const timer = useRef(null);
 
   function startClock() {
     const value = setInterval(() => {
