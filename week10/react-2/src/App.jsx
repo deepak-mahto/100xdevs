@@ -30,10 +30,26 @@ export default App;
 function Layout() {
   return (
     <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+}
+
+function Header() {
+  return (
+    <>
       <Link to={"/"}>Allen</Link> |
       <Link to={"/class-11-program"}>Class 11</Link> |
       <Link to={"/class-12-program"}>Class 12</Link>
-      <Outlet />
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <>
       <h2>Allen footer | Contact us</h2>
     </>
   );
