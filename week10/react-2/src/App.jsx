@@ -33,11 +33,17 @@ function Landing() {
     </>
   );
 }
-
 function Class11Program() {
+  const navigate = useNavigate();
+
+  function navigateToHomePage() {
+    navigate("/");
+  }
+
   return (
     <>
       <h1>class 11the program</h1>
+      <button onClick={navigateToHomePage}>Back to home page</button>
     </>
   );
 }
