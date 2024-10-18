@@ -5,26 +5,47 @@ import {
   Route,
   Link,
   useNavigate,
+  Outlet,
 } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Link to={"/"}>Allen</Link> |<Link to={"/"}>Class 11</Link> |
-        <Link to={"/"}>Class 12</Link>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path={"/class-11-program"} element={<Class11Program />} />
-          <Route path={"/class-12-program"} element={<Class12Program />} />
+          <Route path={"/"} element={<Layout />}>
+            <Route path="/" element={<Landing />} />
+            <Route path={"/class-11-program"} element={<Class11Program />} />
+            <Route path={"/class-12-program"} element={<Class12Program />} />
+            <Route path={"*"} element={<NotFound />} />
+          </Route>
         </Routes>
-        <h2>Allen footer | Contact us</h2>
       </BrowserRouter>
     </>
   );
 };
 
 export default App;
+
+function Layout() {
+  return (
+    <>
+      <Link to={"/"}>Allen</Link> |
+      <Link to={"/class-11-program"}>Class 11</Link> |
+      <Link to={"/class-12-program"}>Class 12</Link>
+      <Outlet />
+      <h2>Allen footer | Contact us</h2>
+    </>
+  );
+}
+
+function NotFound() {
+  return (
+    <>
+      <h1>Content not available</h1>
+    </>
+  );
+}
 
 function Landing() {
   return (
