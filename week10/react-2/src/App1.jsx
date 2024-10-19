@@ -25,8 +25,6 @@ const App = () => {
   );
 };
 
-export default App;
-
 function Layout() {
   return (
     <>
@@ -92,3 +90,5 @@ function Class12Program() {
     </>
   );
 }
+
+export default App;
