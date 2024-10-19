@@ -3,24 +3,16 @@ import React, { createContext, useContext, useState } from "react";
 // create a context
 const BulbContext = createContext();
 
-function BulbProvider({ children }) {
-  const [isLightOn, setIsLightOn] = useState("false");
-  return (
-    <BulbContext.Provider
-      value={{ isLightOn: isLightOn, setIsLightOn: setIsLightOn }}
-    >
-      {children}
-    </BulbContext.Provider>
-  );
-}
-
 // provide value to the components
 const App = () => {
+  const [isLightOn, setIsLightOn] = useState("false");
   return (
     <div>
-      <BulbProvider>
+      <BulbContext.Provider
+        value={{ isLightOn: isLightOn, setIsLightOn: setIsLightOn }}
+      >
         <Light />
-      </BulbProvider>
+      </BulbContext.Provider>
     </div>
   );
 };
