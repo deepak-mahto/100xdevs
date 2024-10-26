@@ -17,12 +17,12 @@ export function useFetch(url, value, retryTime) {
   }, [value]);
 
   useEffect(() => {
-    const clear = setInterval(() => {
+    const fetchInterval = setInterval(() => {
       getPost(url);
     }, retryTime);
 
     return () => {
-      clearInterval(clear);
+      clearInterval(fetchInterval);
     };
   }, []);
 
