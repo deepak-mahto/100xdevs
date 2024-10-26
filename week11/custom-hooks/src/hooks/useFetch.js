@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
-export function useTodoTitle() {
-  const [todo, setTodo] = useState({});
+export function useFetch(url) {
+  const [finalTodo, setFinalTodo] = useState({});
 
   async function getTodo() {
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
+    const response = await fetch(url);
     const json = await response.json();
-    setTodo(json);
+    setFinalTodo(json);
   }
 
   useEffect(() => {
     getTodo();
   }, []);
 
-  return todo.title;
+  return {
+    finalTodo: finalTodo,
+  };
 }

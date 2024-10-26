@@ -1,11 +1,14 @@
 import "./App.css";
-import { useTodoTitle } from "./hooks/useFetch";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
-  const todoTitle = useTodoTitle();
+  const { finalTodo } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts/1"
+  );
+
   return (
     <div>
-      <h2>{todoTitle}</h2>
+      <h2>{JSON.stringify(finalTodo.title)}</h2>
     </div>
   );
 }
