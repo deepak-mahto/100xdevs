@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
 import "./App.css";
+import { useTodoTitle } from "./hooks/useFetch";
 
 function App() {
-  const [todo, setTodo] = useState([]);
-
-  async function getTodo() {
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
-    const json = await response.json();
-    setTodo(json);
-  }
-
-  useEffect(() => {
-    getTodo();
-  }, []);
-
+  const todoTitle = useTodoTitle();
   return (
     <div>
-      <h2>{todo.title}</h2>
+      <h2>{todoTitle}</h2>
     </div>
   );
 }
