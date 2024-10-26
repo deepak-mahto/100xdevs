@@ -4,10 +4,14 @@ import { useFetch } from "./hooks/useFetch";
 
 function App() {
   const [currentPost, setCurrentPost] = useState(1);
-  const { finalPost } = useFetch(
+  const { finalPost, loading } = useFetch(
     `https://jsonplaceholder.typicode.com/posts/${currentPost}`,
-    currentPost
+    currentPost,
+    10000
   );
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
