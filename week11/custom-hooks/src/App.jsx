@@ -1,24 +1,16 @@
 import { useState } from "react";
 import "./App.css";
-import { useFetch } from "./hooks/useFetch";
+import { usePrev } from "./hooks/usePrev";
 
 function App() {
-  const [currentPost, setCurrentPost] = useState(1);
-  const { finalPost, loading } = useFetch(
-    `https://jsonplaceholder.typicode.com/posts/${currentPost}`,
-    currentPost,
-    10000
-  );
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const [count, setCount] = useState(0);
+  const prev = usePrev(count);
 
   return (
     <div>
-      <button onClick={() => setCurrentPost(1)}>1</button>
-      <button onClick={() => setCurrentPost(2)}>2</button>
-      <button onClick={() => setCurrentPost(3)}>3</button> <br />
-      <h2>{JSON.stringify(finalPost.title)}</h2>
+      <h1>{count}</h1>
+      <button onClick={() => setCount((curr) => curr + 1)}>Increase</button>
+      <h2>Previous value was {prev}</h2>
     </div>
   );
 }
