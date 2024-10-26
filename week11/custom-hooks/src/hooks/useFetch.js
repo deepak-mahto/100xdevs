@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 
 export function useFetch(url) {
-  const [finalTodo, setFinalTodo] = useState({});
+  const [finalPost, setFinalPost] = useState({});
 
-  async function getTodo() {
+  async function getPost() {
     const response = await fetch(url);
     const json = await response.json();
-    setFinalTodo(json);
+    setFinalPost(json);
   }
 
   useEffect(() => {
-    getTodo();
+    getPost();
   }, []);
 
   return {
-    finalTodo: finalTodo,
+    finalPost: finalPost,
   };
 }
