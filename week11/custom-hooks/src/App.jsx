@@ -1,16 +1,26 @@
+import { useEffect, useState } from "react";
 import "./App.css";
-import { useDebounce } from "./hooks/useDebounce";
+import { useDebounce2 } from "./hooks/useDebounce2";
 
 function App() {
-  function sendDataToBackend() {
-    console.log("Sent data to backend");
+  const [inputVal, setInputVal] = useState("");
+  const deBounceVal = useDebounce2(inputVal, 200);
+
+  function change(e) {
+    setInputVal(e.target.value);
   }
 
-  const deBounceFn = useDebounce(sendDataToBackend);
+  useEffect(() => {
+    console.log("Sent request to the backend");
+  }, [deBounceVal]);
 
   return (
     <div>
-      <input type="text" onChange={deBounceFn} placeholder="Enter to search" />
+      <input
+        type="text"
+        placeholder="Enter to search something"
+        onChange={change}
+      />
     </div>
   );
 }
