@@ -1,16 +1,16 @@
-import { useState } from "react";
 import "./App.css";
-import { usePrev } from "./hooks/usePrev";
+import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const prev = usePrev(count);
+  function sendDataToBackend() {
+    console.log("Sent data to backend");
+  }
+
+  const deBounceFn = useDebounce(sendDataToBackend);
 
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={() => setCount((curr) => curr + 1)}>Increase</button>
-      <h2>Previous value was {prev}</h2>
+      <input type="text" onChange={deBounceFn} placeholder="Enter to search" />
     </div>
   );
 }
