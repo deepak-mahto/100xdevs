@@ -1,6 +1,6 @@
 import "./App.css";
 import { todosAtomFamily } from "./store/atoms/todos";
-import { RecoilRoot, useRecoilValue } from "recoil";
+import { RecoilRoot, useRecoilValue, useRecoilValueLoadable } from "recoil";
 
 function App() {
   return (
@@ -17,14 +17,28 @@ function App() {
 }
 
 function Todo({ id }) {
-  const currentTodo = useRecoilValue(todosAtomFamily(id));
-  console.log(currentTodo);
-  return (
-    <div>
-      <h2>{currentTodo.id}</h2>
-      <h2>{currentTodo.title}</h2>
-    </div>
-  );
+  // const currentTodo = useRecoilValue(todosAtomFamily(id));
+  const currentTodo = useRecoilValueLoadable(todosAtomFamily(id));
+  if (currentTodo.state === "loading") {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    );
+  } else if (currentTodo.state === "hasValue") {
+    return (
+      <div>
+        <h2>{currentTodo.contents.id}</h2>
+        <h2>{currentTodo.contents.title}</h2>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <h2>Unable to fetch the data from the backend</h2>
+      </div>
+    );
+  }
 }
 
 export default App;

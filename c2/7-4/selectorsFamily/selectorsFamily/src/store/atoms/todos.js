@@ -8,6 +8,7 @@ export const todosAtomFamily = atomFamily({
     get:
       (id) =>
       async ({ get }) => {
+        await new Promise((r) => setTimeout(r, 3000));
         const res = await axios.get(
           `https://jsonplaceholder.typicode.com/todos/${id}`
         );
