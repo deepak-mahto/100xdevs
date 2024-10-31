@@ -1,3 +1,4 @@
+// giving value to a function
 function sum(a: number, b: number): number {
   return a + b;
 }
