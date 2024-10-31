@@ -4,14 +4,13 @@ import { useState } from "react";
 
 function App() {
   const [render, setRender] = useState(true);
-
   useEffect(() => {
-    setInterval(() => {
-      setRender((r) => !r);
-    }, 5000);
+    setTimeout(() => {
+      setRender(false);
+    }, 10000);
   }, []);
 
-  return <div>{render ? <MyComponent /> : <h1>From outside the comp</h1>}</div>;
+  return <div>{render ? <MyComponent /> : <div></div>}</div>;
 }
 
 function MyComponent() {
@@ -25,7 +24,7 @@ function MyComponent() {
 
   return (
     <div>
-      <h1>From inside the comp</h1>
+      <h1>hi there</h1>
     </div>
   );
 }
