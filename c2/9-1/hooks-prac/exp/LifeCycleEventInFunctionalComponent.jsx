@@ -1,16 +1,12 @@
 import { useEffect } from "react";
 import "./App.css";
-import { useState } from "react";
 
 function App() {
-  const [render, setRender] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setRender(false);
-    }, 10000);
-  }, []);
-
-  return <div>{render ? <MyComponent /> : <div></div>}</div>;
+  return (
+    <div>
+      <MyComponent />
+    </div>
+  );
 }
 
 function MyComponent() {
