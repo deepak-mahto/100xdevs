@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
+
 function App() {
-  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <MyComponent />
+    </div>
+  );
+}
+
+function MyComponent() {
+  useEffect(() => {
+    console.log("component mounted");
+
+    return () => {
+      console.log("component unmounted");
+    };
+  }, []);
 
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={() => setCount((c) => c + 1)}>Increase</button>
+      <h1>hi there</h1>
     </div>
   );
 }
