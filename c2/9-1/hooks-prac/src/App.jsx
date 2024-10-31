@@ -1,28 +1,46 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-function useInterval(func, delay) {
+function useDebounce(value, delay) {
+  const [debounce, setDebounce] = useState(value);
+
   useEffect(() => {
-    const value = setInterval(() => {
-      func();
+    const timerId = setTimeout(() => {
+      setDebounce(value);
     }, delay);
 
     return () => {
-      clearInterval(value);
+      clearTimeout(timerId);
     };
-  }, []);
+  }, [value, delay]);
+
+  return debounce;
 }
 
 function App() {
-  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <SearchBar />
+    </div>
+  );
+}
 
-  useInterval(() => {
-    setCount((c) => c + 1);
-  }, 1000);
+function SearchBar() {
+  const [inputValue, setInputValue] = useState("");
+  const debounceValue = useDebounce(inputValue, 500);
+
+  useEffect(() => {
+    console.log("Request sent to backend");
+  }, [debounceValue]);
 
   return (
     <div>
-      <h2>Count is at {count}</h2>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        placeholder="Enter to search"
+      />
     </div>
   );
 }
