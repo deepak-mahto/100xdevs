@@ -1,6 +1,24 @@
-function sum(a: number, b: number) {
-  return a + b;
+// implementing interfaces
+interface Person {
+  name: string;
+  age: number;
+  greet(phrase: string): void;
 }
 
-const result = sum(12, 12);
-console.log(result);
+class Employee implements Person {
+  name: string;
+  age: number;
+
+  constructor(n: string, a: number) {
+    this.name = n;
+    this.age = a;
+  }
+
+  greet(phrase: string): void {
+    console.log(`${phrase} ${this.name}`);
+  }
+}
+
+const obj1 = new Employee("deepak", 22);
+
+console.log(obj1.name);
