@@ -1,8 +1,6 @@
-function identity<T>(arg: T) {
-  return arg;
+function getFirstElement<T>(arr: T[]) {
+  return arr[0];
 }
 
-const output1 = identity<string>("deepak");
-const output2 = identity<number>(123);
-
-console.log(output1.toUpperCase());
+const firstElement = getFirstElement(["deepak", "Kumar"]);
+console.log(firstElement.toUpperCase());
