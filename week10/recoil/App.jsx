@@ -6,6 +6,15 @@ const count = atom({
   default: 0, // default value (aka initial value)
 });
 
+// App Component
+const App = () => {
+  return (
+    <div>
+      <Parent />
+    </div>
+  );
+};
+
 function Parent() {
   return (
     <RecoilRoot>
@@ -34,14 +43,5 @@ function Value() {
   const countValue = useRecoilValue(count);
   return <p>Count: {countValue}</p>;
 }
-
-// App Component
-const App = () => {
-  return (
-    <div>
-      <Parent />
-    </div>
-  );
-};
 
 export default App;
