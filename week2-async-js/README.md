@@ -89,6 +89,6 @@ https://projects.100xdevs.com/tracks/promises-async-await/Promises-and-async--aw
 
 https://petal-estimate-4e9.notion.site/Installing-node-Solving-assignments-3dfb37111f9e48ca80caac66dbe97331
 
-### Callback hell. rejects and async/await
+### Callback hell, rejects and async/await
 
 https://projects.100xdevs.com/tracks/promises-async-await/Promises-and-async--await-1
