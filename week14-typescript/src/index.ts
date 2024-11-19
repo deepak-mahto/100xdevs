@@ -1,4 +1,9 @@
-const greet = (user: { name: string; age: number }) => {
+interface UserType {
+  name: string;
+  age: number;
+}
+
+const greet = (user: UserType) => {
   console.log(`Hello ${user.name}`);
 };
 
