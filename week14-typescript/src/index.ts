@@ -1,9 +1,10 @@
-const delayedCall = (fn: () => void) => {
-  setTimeout(fn, 1000);
+const greet = (user: { name: string; age: number }) => {
+  console.log(`Hello ${user.name}`);
 };
 
-console.log(
-  delayedCall(() => {
-    console.log("hi there");
-  })
-);
+const user = {
+  name: "deepak",
+  age: 20,
+};
+
+greet(user);
