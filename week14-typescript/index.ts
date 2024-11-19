@@ -1,5 +1,5 @@
-const greet = (firstName: string) => {
-  console.log(`Hello ${firstName}`);
+const sum = (a: number, b: number) => {
+  return a + b;
 };
 
-greet("deepak");
+console.log(sum(2, 4));
