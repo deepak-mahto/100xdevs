@@ -1,24 +1,16 @@
-interface Address {
-  city: string;
-  country: string;
-  pincode: number;
-}
-
-interface User {
+interface People {
   name: string;
   age: number;
-  address: Address;
-}
-interface Office {
-  address: Address;
+  greet: () => string;
 }
 
-const obj: User = {
-  name: "Deepak",
-  age: 21,
-  address: {
-    city: "New Delhi",
-    country: "India",
-    pincode: 123123,
+const obj: People = {
+  name: "deepak",
+  age: 22,
+  greet: () => {
+    return "hi";
   },
 };
+
+const greeting = obj.greet();
+console.log(greeting);
