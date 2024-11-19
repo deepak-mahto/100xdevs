@@ -1,2 +1,5 @@
-const x: number = 1;
-console.log(x);
+const greet = (firstName: string) => {
+  console.log(`Hello ${firstName}`);
+};
+
+greet("deepak");

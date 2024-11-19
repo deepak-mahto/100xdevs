@@ -1,3 +1,5 @@
 "use strict";
-const x = 1;
-console.log(x);
+const greet = (firstName) => {
+    console.log(`Hello ${firstName}`);
+};
+greet("deepak");
