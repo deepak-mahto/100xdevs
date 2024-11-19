@@ -5,10 +5,7 @@ interface Person {
 }
 
 class Manager implements Person {
-  name: string;
-  age: number;
-
-  constructor(name: string, age: number) {
+  constructor(public name: string, public age: number) {
     this.name = name;
     this.age = age;
   }
