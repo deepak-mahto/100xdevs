@@ -1,17 +1,7 @@
-interface Employee {
-  name: string;
-  startDate: number;
-}
+const greet = (name: string): string => {
+  return `Hello ${name}`;
+};
 
-interface Manager {
-  name: string;
-  department: string;
-}
-
-type TeachLead = Employee & Manager;
-
-const t: TeachLead = {
-  name: "deepak",
-  startDate: 20,
-  department: "Fullstack",
+const isEven = (n: number): boolean => {
+  return n % 2 === 0;
 };
