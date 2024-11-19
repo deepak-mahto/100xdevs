@@ -1,6 +1,9 @@
-const isLegal = (a: number) => {
-  return a > 18 ? "legal" : "not legal";
+const delayedCall = (fn: () => void) => {
+  setTimeout(fn, 1000);
 };
 
-const result = isLegal(17);
-console.log(result);
+console.log(
+  delayedCall(() => {
+    console.log("hi there");
+  })
+);

@@ -1,6 +1,7 @@
 "use strict";
-const isLegal = (a) => {
-    return a > 18 ? "legal" : "not legal";
+const delayedCall = (fn) => {
+    setTimeout(fn, 1000);
 };
-const result = isLegal(17);
-console.log(result);
+console.log(delayedCall(() => {
+    console.log("hi there");
+}));
