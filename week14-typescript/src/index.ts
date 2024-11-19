@@ -1,16 +1,18 @@
-interface People {
+interface Person {
   name: string;
   age: number;
-  greet: () => string;
 }
 
-const obj: People = {
-  name: "deepak",
-  age: 22,
-  greet: () => {
-    return "hi";
-  },
-};
+class Manager implements Person {
+  name: string;
+  age: number;
 
-const greeting = obj.greet();
-console.log(greeting);
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const m = new Manager("Deepak", 23);
+console.log(m.name);
+console.log(m.age);
