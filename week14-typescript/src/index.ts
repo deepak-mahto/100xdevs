@@ -1,21 +1,26 @@
-class Shape {
-  area() {
-    console.log("I am area");
+interface Person {
+  name: string;
+  age: number;
+  isLegal: () => boolean;
+}
+
+class Manager implements Person {
+  name: string;
+  age: number;
+
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  isLegal() {
+    return this.age > 18;
   }
 }
 
-class Rect extends Shape {
-  height: number;
-  width: number;
-
-  constructor(height: number, width: number) {
-    super();
-    this.height = height;
-    this.width = width;
+class TechLead extends Manager {
+  constructor(name: string, age: number) {
+    super(name, age);
   }
 }
 
-const r = new Rect(12, 34);
-console.log(r.height);
-console.log(r.width);
-console.log(r.area());
+const m = new Manager("deepak", 20);
