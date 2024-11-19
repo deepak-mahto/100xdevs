@@ -1,5 +1,6 @@
-const sum = (a: number, b: number) => {
-  return a + b;
+const isLegal = (a: number) => {
+  return a > 18 ? "legal" : "not legal";
 };
 
-console.log(sum(2, 4));
+const result = isLegal(17);
+console.log(result);

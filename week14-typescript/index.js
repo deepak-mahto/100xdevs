@@ -1,5 +1,6 @@
 "use strict";
-const sum = (a, b) => {
-    return a + b;
+const isLegal = (a) => {
+    return a > 18 ? "legal" : "not legal";
 };
-console.log(sum(2, 4));
+const result = isLegal(17);
+console.log(result);
