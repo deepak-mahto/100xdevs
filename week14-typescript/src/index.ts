@@ -1,15 +1,17 @@
-interface UserType {
+interface Employee {
   name: string;
-  age: number;
+  startDate: number;
 }
 
-const greet = (user: UserType) => {
-  console.log(`Hello ${user.name}`);
-};
+interface Manager {
+  name: string;
+  department: string;
+}
 
-const user: UserType = {
+type TeachLead = Employee & Manager;
+
+const t: TeachLead = {
   name: "deepak",
-  age: 20,
+  startDate: 20,
+  department: "Fullstack",
 };
-
-greet(user);
