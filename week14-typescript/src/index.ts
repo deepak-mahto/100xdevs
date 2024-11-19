@@ -7,7 +7,7 @@ const greet = (user: UserType) => {
   console.log(`Hello ${user.name}`);
 };
 
-const user = {
+const user: UserType = {
   name: "deepak",
   age: 20,
 };
