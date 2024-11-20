@@ -1,23 +1,40 @@
-const maxValue = (arr: number[]) => {
-  let max = 0;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > max) {
-      max = arr[i];
+const canVote = (voters: Voter[]) => {
+  let eligibleVoters = [];
+  for (let i = 0; i < voters.length; i++) {
+    if (voters[i].age > 18) {
+      eligibleVoters.push(voters[i].name);
     }
   }
-  return max;
+  return eligibleVoters;
 };
 
-const max = maxValue([23, 34, 22, 2, 4, 45]);
-console.log(max);
-
-interface Addresss {
-  city: string;
-  pinCode: number;
-}
-
-interface User {
+interface Voter {
   name: string;
   age: number;
-  addresses: Addresss[];
 }
+
+let voters: Voter[] = [
+  {
+    name: "chuck",
+    age: 17,
+  },
+  {
+    name: "thomas",
+    age: 23,
+  },
+  {
+    name: "charlie",
+    age: 20,
+  },
+  {
+    name: "winston",
+    age: 22,
+  },
+  {
+    name: "shalby",
+    age: 16,
+  },
+];
+
+const eligibleToVote = canVote(voters);
+console.log(eligibleToVote);
