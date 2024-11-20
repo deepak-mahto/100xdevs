@@ -10,3 +10,14 @@ const maxValue = (arr: number[]) => {
 
 const max = maxValue([23, 34, 22, 2, 4, 45]);
 console.log(max);
+
+interface Addresss {
+  city: string;
+  pinCode: number;
+}
+
+interface User {
+  name: string;
+  age: number;
+  addresses: Addresss[];
+}
