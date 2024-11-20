@@ -1,27 +1,27 @@
-type Employee = {
+interface Admin {
   name: string;
-  startDate: string;
-};
+  permissions: string;
+}
 
-type Manager = {
+interface User {
   name: string;
-  department: string;
+  age: number;
+}
+
+type userOrAdmin = Admin | User;
+
+const greeting = (user: userOrAdmin) => {
+  return `welcome ${user.name}`;
 };
 
-type TechLead = Employee & Manager;
-
-let e: Employee = {
-  name: "Deepak",
-  startDate: "20-11-2024",
+let admin = {
+  name: "deepak",
+  permissions: "y",
 };
 
-let m: Manager = {
-  name: "Albert",
-  department: "full-stack",
+let user: userOrAdmin = {
+  name: "mahesh",
+  age: 23,
 };
-
-let t: TechLead = {
-  name: "Shoun",
-  startDate: "21-11-2014",
-  department: " ml",
-};
+const greet = greeting(user);
+console.log(greet);
