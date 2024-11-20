@@ -1,23 +1,25 @@
-interface Person {
+abstract class Person {
   name: string;
   age: number;
-  isLegal: () => boolean;
-}
-
-class Manager implements Person {
-  constructor(public name: string, public age: number) {
+  constructor(name: string, age: number) {
     this.name = name;
     this.age = age;
   }
-  isLegal() {
-    return this.age > 18;
+  abstract greet(): string;
+  hello() {
+    console.log("hi there");
   }
 }
 
-class TechLead extends Manager {
+class Employee extends Person {
+  name: string;
+  age: number;
   constructor(name: string, age: number) {
     super(name, age);
+    this.name = name;
+    this.age = age;
+  }
+  greet() {
+    return `hi ${this.name}`;
   }
 }
-
-const m = new Manager("deepak", 20);
