@@ -1,27 +1,12 @@
-interface Admin {
-  name: string;
-  permissions: string;
-}
-
-interface User {
-  name: string;
-  age: number;
-}
-
-type userOrAdmin = Admin | User;
-
-const greeting = (user: userOrAdmin) => {
-  return `welcome ${user.name}`;
+const maxValue = (arr: number[]) => {
+  let max = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
 };
 
-let admin = {
-  name: "deepak",
-  permissions: "y",
-};
-
-let user: userOrAdmin = {
-  name: "mahesh",
-  age: 23,
-};
-const greet = greeting(user);
-console.log(greet);
+const max = maxValue([23, 34, 22, 2, 4, 45]);
+console.log(max);
