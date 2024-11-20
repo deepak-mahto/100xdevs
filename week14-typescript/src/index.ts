@@ -1,28 +1,27 @@
-type User = {
+type Employee = {
   name: string;
-  age: number;
-  address?: {
-    city: string;
-    country: string;
-  };
+  startDate: string;
 };
 
-const isLegal = (user: User): boolean => {
-  return user.age > 18;
+type Manager = {
+  name: string;
+  department: string;
 };
 
-const user: User = {
-  name: "deepak",
-  age: 24,
-  address: {
-    city: "New Delhi",
-    country: "India",
-  },
-};
-const canVote = isLegal(user);
+type TechLead = Employee & Manager;
 
-if (canVote) {
-  console.log("can vote");
-} else {
-  console.log("can not vote");
-}
+let e: Employee = {
+  name: "Deepak",
+  startDate: "20-11-2024",
+};
+
+let m: Manager = {
+  name: "Albert",
+  department: "full-stack",
+};
+
+let t: TechLead = {
+  name: "Shoun",
+  startDate: "21-11-2014",
+  department: " ml",
+};
