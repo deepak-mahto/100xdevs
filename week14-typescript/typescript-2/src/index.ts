@@ -1,9 +1,14 @@
-type EventType = "click" | "scroll" | "mousemove";
+import express from "express";
 
-type ExcludeType = Exclude<EventType, "scroll">;
+const app = express();
+const port = 3000;
 
-const handleEvent = (event: ExcludeType) => {
-  console.log(`Handling event: ${event}`);
-};
+app.get("/user", (req, res) => {
+  res.json({
+    message: "Hello",
+  });
+});
 
-handleEvent("mousemove");
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
