@@ -1,15 +1,9 @@
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
-  createdAt: Date;
-}
+type User = {
+  readonly name: string;
+  readonly age: number;
+};
 
-type userProfile = Pick<User, "name" | "email" | "password">;
-
-type updatePropOptional = Partial<userProfile>;
-
-const displayUserProfile = (user: updatePropOptional) => {
-  console.log(`Name: ${user.name} Email: ${user.email}`);
+const user: User = {
+  name: "deepak",
+  age: 22,
 };
