@@ -1,23 +1,6 @@
-type User = {
-  id: string;
-  username: string;
-};
+const users = new Map();
+users.set("asad12@23", { name: "deepak", age: 23 });
+users.set("aksfsn12@12", { name: "ram", age: 22 });
 
-// type Users = {
-//   [key: string]: User;
-// };
-
-type Users = Record<string, User>;
-
-const users: Users = {
-  "ras@qwe12": {
-    id: "ras@qwe12",
-    username: "deepak",
-  },
-  "asfwf@12": {
-    id: "asfwf@12",
-    username: "ram",
-  },
-};
-
-console.log(users["ras@qwe12"].username);
+const user1 = users.get("asad12@23");
+console.log(user1.name);
