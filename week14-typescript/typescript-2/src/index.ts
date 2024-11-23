@@ -1,5 +1,5 @@
 import express from "express";
-import { string, z } from "zod";
+import { z } from "zod";
 
 const app = express();
 const port = 3000;
