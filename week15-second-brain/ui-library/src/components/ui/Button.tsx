@@ -1,11 +1,13 @@
+import { ReactElement } from "react";
+
 type Variants = "primary" | "secondry";
 
 interface ButtonProps {
   variant: Variants;
   size: "sm" | "md" | "lg";
   text: string;
-  startIcon?: any;
-  endIcon?: any;
+  startIcon?: ReactElement;
+  endIcon?: ReactElement;
   onClick: () => void;
 }
 
@@ -32,6 +34,7 @@ const Button = (props: ButtonProps) => {
       >
         {props.startIcon ? <div className="pr-2">{props.startIcon}</div> : null}
         {props.text}
+        {props.endIcon ? <div className="pr-2">{props.endIcon}</div> : null}
       </button>
     </div>
   );
