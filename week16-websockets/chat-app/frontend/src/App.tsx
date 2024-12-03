@@ -22,6 +22,9 @@ const App = () => {
         })
       );
     };
+    return () => {
+      ws.close();
+    };
   }, []);
 
   return (
