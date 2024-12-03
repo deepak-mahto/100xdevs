@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 const App = () => {
   const [messages, setMessages] = useState(["hi there", "hello there"]);
   const [message, setMessage] = useState("");
-  const wsRef: any = useRef();
+  const wsRef = useRef();
 
   useEffect(() => {
     const ws = new WebSocket("http://localhost:8080");
