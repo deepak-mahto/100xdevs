@@ -1,10 +1,51 @@
+import { useEffect, useRef, useState } from "react";
+
 const App = () => {
+  const [messages, setMessages] = useState(["hi there", "hello there"]);
+  const [message, setMessage] = useState("");
+  const wsRef = useRef();
+
+  useEffect(() => {
+    const ws = new WebSocket("http://localhost:3000");
+    ws.onmessage = (event) => {
+      setMessages((m) => [...m, event.data]);
+    };
+    wsRef.current = ws;
+  }, []);
+
   return (
     <div className="h-screen bg-black">
-      <div className="h-[95vh]"></div>
+      <div className="h-[80vh] p-4">
+        {messages.map((message) => (
+          <div className="m-10">
+            <span className="bg-white text-black rounded p-4">{message}</span>
+          </div>
+        ))}
+      </div>
       <div className="flex w-full bg-white">
-        <input type="text" placeholder="Type message" className="flex-1 p-4" />
-        <button className="bg-purple-600 text-white p-4">Submit</button>
+        <input
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+          type="text"
+          placeholder="Type message"
+          className="flex-1 p-4"
+        />
+        <button
+          onClick={() => {
+            wsRef.current.send(
+              JSON.stringify({
+                type: "chat",
+                payload: {
+                  message: message,
+                },
+              })
+            );
+          }}
+          className="bg-purple-600 text-white p-4"
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
