@@ -3,14 +3,25 @@ import { useEffect, useRef, useState } from "react";
 const App = () => {
   const [messages, setMessages] = useState(["hi there", "hello there"]);
   const [message, setMessage] = useState("");
-  const wsRef = useRef();
+  const wsRef: any = useRef();
 
   useEffect(() => {
-    const ws = new WebSocket("http://localhost:3000");
+    const ws = new WebSocket("http://localhost:8080");
     ws.onmessage = (event) => {
       setMessages((m) => [...m, event.data]);
     };
     wsRef.current = ws;
+
+    ws.onopen = () => {
+      ws.send(
+        JSON.stringify({
+          type: "join",
+          payload: {
+            roomId: "red",
+          },
+        })
+      );
+    };
   }, []);
 
   return (
@@ -44,7 +55,7 @@ const App = () => {
           }}
           className="bg-purple-600 text-white p-4"
         >
-          Submit
+          Send message
         </button>
       </div>
     </div>
