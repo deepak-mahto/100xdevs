@@ -11,12 +11,12 @@ wss.on("connection", (socket) => {
 
   socket.on("message", (message) => {
     console.log(`Message recieved ${message.toString()}`);
-    // for (let i = 0; i < allSockets.length; i++) {
-    //   const socket = allSockets[i];
-    //   socket.send(`${message.toString()}: sent from the server`);
-    // }
-    allSockets.forEach((socket) => {
+    for (let i = 0; i < allSockets.length; i++) {
+      const socket = allSockets[i];
       socket.send(`${message.toString()}: sent from the server`);
-    });
+    }
+  });
+  socket.on("disconnect", () => {
+    allSockets = allSockets.filter((x) => x != socket);
   });
 });
