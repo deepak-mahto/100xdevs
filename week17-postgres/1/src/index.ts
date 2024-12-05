@@ -23,7 +23,7 @@ app.post("/signup", async (req, res) => {
     });
   } catch (error) {
     res.json({
-      message: "Error while signing up",
+      message: "Error while signing up" + " " + error,
     });
   }
 });
