@@ -17,8 +17,10 @@ app.get("/todos/:id", async (req, res) => {
     where: {
       id: +userId,
     },
-    include: {
+    select: {
       todos: true,
+      username: true,
+      city: true,
     },
   });
   res.json({
@@ -68,3 +70,5 @@ async function updateUserDetails() {
     },
   });
 }
+
+app.listen(3000);
