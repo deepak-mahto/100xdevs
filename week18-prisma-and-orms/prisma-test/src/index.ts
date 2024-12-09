@@ -12,10 +12,10 @@ app.get("/users", async (req, res) => {
 });
 
 app.get("/todos/:id", async (req, res) => {
-  const userId = req.params.id as unknown as number;
+  const userId = req.params.id;
   const user = await client.user.findFirst({
     where: {
-      id: userId,
+      id: +userId,
     },
     include: {
       todos: true,
