@@ -19,8 +19,6 @@ async function getUserDetails() {
       id: 1,
     },
   });
-  return user;
-}
-getUserDetails().then((user) => {
   console.log(user);
-});
+}
+getUserDetails();
