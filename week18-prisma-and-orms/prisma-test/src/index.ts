@@ -21,4 +21,12 @@ async function getUserDetails() {
   });
   console.log(user);
 }
-getUserDetails();
+
+async function deleteUserDetails() {
+  const user = await client.user.delete({
+    where: {
+      id: 1,
+    },
+  });
+  console.log(user);
+}
