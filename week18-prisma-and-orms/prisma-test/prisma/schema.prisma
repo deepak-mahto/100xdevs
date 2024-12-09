@@ -13,7 +13,7 @@ model User {
   password String
   age      Int
   city     String
-  todo     Todo[]
+  todos    Todo[]
 }
 
 model Todo {
