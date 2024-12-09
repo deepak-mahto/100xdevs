@@ -28,5 +28,15 @@ async function deleteUserDetails() {
       id: 1,
     },
   });
-  console.log(user);
+}
+
+async function updateUserDetails() {
+  const user = await client.user.update({
+    where: {
+      id: 1,
+    },
+    data: {
+      username: "ram",
+    },
+  });
 }
