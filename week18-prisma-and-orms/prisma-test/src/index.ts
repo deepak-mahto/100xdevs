@@ -17,10 +17,8 @@ app.get("/todos/:id", async (req, res) => {
     where: {
       id: +userId,
     },
-    select: {
+    include: {
       todos: true,
-      username: true,
-      city: true,
     },
   });
   res.json({
