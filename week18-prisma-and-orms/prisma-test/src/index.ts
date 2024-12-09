@@ -1,6 +1,30 @@
+import express from "express";
 import { PrismaClient } from "@prisma/client";
+const app = express();
 
 const client = new PrismaClient();
+
+app.get("/users", async (req, res) => {
+  const users = await client.user.findMany();
+  res.json({
+    users: users,
+  });
+});
+
+app.get("/todos/:id", async (req, res) => {
+  const userId = req.params.id as unknown as number;
+  const user = await client.user.findFirst({
+    where: {
+      id: userId,
+    },
+    include: {
+      todos: true,
+    },
+  });
+  res.json({
+    user: user,
+  });
+});
 
 async function createUser() {
   await client.user.create({
