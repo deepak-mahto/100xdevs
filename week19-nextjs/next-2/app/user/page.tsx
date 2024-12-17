@@ -1,29 +1,15 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 
-export default function User() {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get(
-        "https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details"
-      )
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <Spinner />;
-  }
+export default async function User() {
+  const response = await axios.get(
+    "https://week-13-offline.kirattechnologies.workers.dev/api/v1/user/details"
+  );
+  const data = response.data;
 
   return (
     <div>
-      {data.name}
-      {data.email}
+      <h1>{data.name}</h1>
+      <h2>{data.email}</h2>
     </div>
   );
 }
