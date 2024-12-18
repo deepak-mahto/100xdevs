@@ -17,3 +17,11 @@ export async function POST(req: NextRequest) {
     message: "You have signed up",
   });
 }
+
+export async function GET(req: NextRequest) {
+  const user = await prismaClient.user.findFirst();
+
+  return NextResponse.json({
+    user,
+  });
+}
