@@ -40,13 +40,9 @@ const handler = NextAuth({
   ],
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    jwt: ({ token, user }) => {
-      token.userId = token.sub;
-      return token;
-    },
     session: ({ session, token, user }: any) => {
       if (session && session.user) {
-        session.user.id = token.userId;
+        session.user.id = token.sub;
       }
       return session;
     },
