@@ -1,17 +1,28 @@
 "use client";
-import { useRouter } from "next/navigation";
+
+import { signIn, signOut } from "next-auth/react";
 
 export default function Appbar() {
-  const router = useRouter();
   return (
     <div>
-      <button
-        onClick={() => {
-          router.push("/api/auth/signin");
-        }}
-      >
-        Sign in
-      </button>
+      <div>
+        <button
+          onClick={() => {
+            signIn();
+          }}
+        >
+          Sign in
+        </button>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            signOut();
+          }}
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
