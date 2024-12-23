@@ -18,21 +18,21 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials: any) {
-        const username = credentials.username;
-        const password = credentials.password;
+        // const username = credentials.username;
+        // const password = credentials.password;
 
-        const user = await prisma.user.findFirst({
-          where: {
-            email: username,
-            password: password,
-          },
-        });
-        if (!user) {
-          return null;
-        }
+        // const user = await prisma.user.findFirst({
+        //   where: {
+        //     email: username,
+        //     password: password,
+        //   },
+        // });
+        // if (!user) {
+        //   return null;
+        // }
         return {
-          id: user.id,
-          email: user.email,
+          id: "123123",
+          email: "deepak@gmail.com",
         };
       },
     }),

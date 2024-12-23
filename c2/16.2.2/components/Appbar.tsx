@@ -1,8 +1,9 @@
 "use client";
 
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Appbar() {
+  const session = useSession();
   return (
     <div>
       <div>
@@ -23,6 +24,7 @@ export default function Appbar() {
           Logout
         </button>
       </div>
+      {JSON.stringify(session)}
     </div>
   );
 }
