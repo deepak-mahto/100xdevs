@@ -18,8 +18,8 @@ const handler = NextAuth({
         },
       },
       async authorize(credentials: any) {
-        // const username = credentials.username;
-        // const password = credentials.password;
+        const username = credentials.username;
+        const password = credentials.password;
 
         // const user = await prisma.user.findFirst({
         //   where: {
@@ -31,13 +31,26 @@ const handler = NextAuth({
         //   return null;
         // }
         return {
-          id: "123123",
+          id: "1",
+          name: "deepak kumar",
           email: "deepak@gmail.com",
         };
       },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    jwt: ({ token, user }) => {
+      token.userId = token.sub;
+      return token;
+    },
+    session: ({ session, token, user }: any) => {
+      if (session && session.user) {
+        session.user.id = token.userId;
+      }
+      return session;
+    },
+  },
 });
 
 export const GET = handler;
