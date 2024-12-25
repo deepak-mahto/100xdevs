@@ -1,11 +1,12 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { use } from "react";
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      name: "Login with email",
+      name: "email",
 
       credentials: {
         username: {
@@ -30,6 +31,14 @@ const handler = NextAuth({
           return null;
         }
       },
+    }),
+    GoogleProvider({
+      clientId: "asd",
+      clientSecret: "asd",
+    }),
+    GitHubProvider({
+      clientId: "asd",
+      clientSecret: "asd",
     }),
   ],
 });
