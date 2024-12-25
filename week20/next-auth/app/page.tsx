@@ -1,3 +1,11 @@
+import { useSession } from "next-auth/react";
+
 export default function Home() {
-  return <div>next auth</div>;
+  const session = useSession();
+  return (
+    <div>
+      next auth
+      {session.status === "authenticated" ? "Logout" : "Login"}
+    </div>
+  );
 }
