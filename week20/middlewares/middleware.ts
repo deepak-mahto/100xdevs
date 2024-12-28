@@ -9,3 +9,7 @@ export function middleware(req: NextRequest) {
   console.log(`request count: ${requestCount}`);
   return res;
 }
+
+export const config = {
+  matcher: "/api/:path*",
+};
