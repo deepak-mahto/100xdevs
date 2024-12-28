@@ -1,15 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-let requestCount = 0;
-
 export function middleware(req: NextRequest) {
-  requestCount++;
+  if (req.nextUrl.pathname.startsWith("/admin")) {
+    return NextResponse.redirect(new URL("/signin", req.url));
+  }
 
-  const res = NextResponse.next();
-  console.log(`request count: ${requestCount}`);
-  return res;
+  if (req.nextUrl.pathname.startsWith("/dashboard")) {
+    return NextResponse.next();
+  }
 }
-
-export const config = {
-  matcher: "/api/:path*",
-};
